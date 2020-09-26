@@ -1,0 +1,43 @@
+PODS:
+  - GoogleMaps (3.10.0):
+    - GoogleMaps/Maps (= 3.10.0)
+  - GoogleMaps/Base (3.10.0)
+  - GoogleMaps/Maps (3.10.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.10.0):
+    - GoogleMaps/Base (= 3.10.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - VanillaConstraints (1.0.4)
+
+DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlaces
+  - RxCocoa
+  - RxSwift
+  - VanillaConstraints
+
+SPEC REPOS:
+  trunk:
+    - GoogleMaps
+    - GooglePlaces
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - VanillaConstraints
+
+SPEC CHECKSUMS:
+  GoogleMaps: 8c080862ff2748ece9929471b30feb56a6c5079d
+  GooglePlaces: 9a6f5f3a0c88da2aa1bf7426a65d3e004f5e69a1
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  VanillaConstraints: 72ceb6f087b4467b22209d078e43819d8d331bf5
+
+PODFILE CHECKSUM: ea4cb35058107eccb10ab0b0a633588bccb37a9f
+
+COCOAPODS: 1.9.3

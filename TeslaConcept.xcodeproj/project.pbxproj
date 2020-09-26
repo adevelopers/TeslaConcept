@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BBDC7D9D9B43B9354D4A188F /* Pods_TeslaConcept.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53727D41AA6A19FFB3E068DD /* Pods_TeslaConcept.framework */; };
+		F121CFD3251F9AEC003143D7 /* mapStyleConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = F121CFD2251F9AEC003143D7 /* mapStyleConfig.json */; };
+		F121CFD6251FAAA5003143D7 /* Right.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F121CFD5251FAAA5003143D7 /* Right.xcassets */; };
+		F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */; };
+		F121CFDF251FE694003143D7 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121CFDE251FE694003143D7 /* Store.swift */; };
+		FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B8815251D10B7005ECE5F /* SplitViewController.swift */; };
+		FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B8817251D130B005ECE5F /* LeftViewController.swift */; };
+		FA4B881A251D1A96005ECE5F /* Left.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4B8819251D1A96005ECE5F /* Left.xcassets */; };
+		FA4B881C251D458B005ECE5F /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */; };
+		FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87B251A6C28002C9A7F /* AppDelegate.swift */; };
+		FA88C880251A6C28002C9A7F /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87F251A6C28002C9A7F /* RightViewController.swift */; };
+		FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA88C884251A6C2B002C9A7F /* Assets.xcassets */; };
+		FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */; };
+		FA88C890251A81E1002C9A7F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C88F251A81E1002C9A7F /* MainViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		452158478D1AFB3950D2AC54 /* Pods-TeslaConcept.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaConcept.debug.xcconfig"; path = "Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept.debug.xcconfig"; sourceTree = "<group>"; };
+		53727D41AA6A19FFB3E068DD /* Pods_TeslaConcept.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeslaConcept.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F121CFD2251F9AEC003143D7 /* mapStyleConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapStyleConfig.json; sourceTree = "<group>"; };
+		F121CFD5251FAAA5003143D7 /* Right.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Right.xcassets; sourceTree = "<group>"; };
+		F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewModel.swift; sourceTree = "<group>"; };
+		F121CFDE251FE694003143D7 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		FA4B8815251D10B7005ECE5F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		FA4B8817251D130B005ECE5F /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		FA4B8819251D1A96005ECE5F /* Left.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Left.xcassets; sourceTree = "<group>"; };
+		FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		FA88C878251A6C28002C9A7F /* TeslaConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslaConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA88C87B251A6C28002C9A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA88C87F251A6C28002C9A7F /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
+		FA88C884251A6C2B002C9A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA88C887251A6C2B002C9A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FA88C889251A6C2B002C9A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA88C88F251A81E1002C9A7F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FF7510DF19F0A7725EEB92EC /* Pods-TeslaConcept.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaConcept.release.xcconfig"; path = "Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA88C875251A6C28002C9A7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBDC7D9D9B43B9354D4A188F /* Pods_TeslaConcept.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B67FD5C284390DE845204D6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53727D41AA6A19FFB3E068DD /* Pods_TeslaConcept.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D6B4EC06471AF4E41903EDE9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				452158478D1AFB3950D2AC54 /* Pods-TeslaConcept.debug.xcconfig */,
+				FF7510DF19F0A7725EEB92EC /* Pods-TeslaConcept.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F121CFCC251F930C003143D7 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				FA4B8815251D10B7005ECE5F /* SplitViewController.swift */,
+				F121CFD8251FBA11003143D7 /* Left */,
+				F121CFD9251FBA20003143D7 /* Right */,
+				FA88C88F251A81E1002C9A7F /* MainViewModel.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		F121CFD8251FBA11003143D7 /* Left */ = {
+			isa = PBXGroup;
+			children = (
+				FA4B8817251D130B005ECE5F /* LeftViewController.swift */,
+				F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */,
+			);
+			path = Left;
+			sourceTree = "<group>";
+		};
+		F121CFD9251FBA20003143D7 /* Right */ = {
+			isa = PBXGroup;
+			children = (
+				FA88C87F251A6C28002C9A7F /* RightViewController.swift */,
+				FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */,
+			);
+			path = Right;
+			sourceTree = "<group>";
+		};
+		FA88C86F251A6C28002C9A7F = {
+			isa = PBXGroup;
+			children = (
+				FA88C87A251A6C28002C9A7F /* TeslaConcept */,
+				FA88C879251A6C28002C9A7F /* Products */,
+				D6B4EC06471AF4E41903EDE9 /* Pods */,
+				B67FD5C284390DE845204D6A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FA88C879251A6C28002C9A7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA88C878251A6C28002C9A7F /* TeslaConcept.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA88C87A251A6C28002C9A7F /* TeslaConcept */ = {
+			isa = PBXGroup;
+			children = (
+				F121CFD2251F9AEC003143D7 /* mapStyleConfig.json */,
+				FA88C87B251A6C28002C9A7F /* AppDelegate.swift */,
+				F121CFCC251F930C003143D7 /* Screens */,
+				FA88C884251A6C2B002C9A7F /* Assets.xcassets */,
+				FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */,
+				FA88C889251A6C2B002C9A7F /* Info.plist */,
+				FA4B8819251D1A96005ECE5F /* Left.xcassets */,
+				F121CFD5251FAAA5003143D7 /* Right.xcassets */,
+				F121CFDE251FE694003143D7 /* Store.swift */,
+			);
+			path = TeslaConcept;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FA88C877251A6C28002C9A7F /* TeslaConcept */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA88C88C251A6C2B002C9A7F /* Build configuration list for PBXNativeTarget "TeslaConcept" */;
+			buildPhases = (
+				56B12397B5CA8529427E4C95 /* [CP] Check Pods Manifest.lock */,
+				FA88C874251A6C28002C9A7F /* Sources */,
+				FA88C875251A6C28002C9A7F /* Frameworks */,
+				FA88C876251A6C28002C9A7F /* Resources */,
+				42B895A793A338B1B9ED3232 /* [CP] Embed Pods Frameworks */,
+				EBE31BB5B1526C1A58BE7B53 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TeslaConcept;
+			productName = TeslaConcept;
+			productReference = FA88C878251A6C28002C9A7F /* TeslaConcept.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA88C870251A6C28002C9A7F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1120;
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = "Kirill Khudiakov";
+				TargetAttributes = {
+					FA88C877251A6C28002C9A7F = {
+						CreatedOnToolsVersion = 11.2;
+					};
+				};
+			};
+			buildConfigurationList = FA88C873251A6C28002C9A7F /* Build configuration list for PBXProject "TeslaConcept" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FA88C86F251A6C28002C9A7F;
+			productRefGroup = FA88C879251A6C28002C9A7F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA88C877251A6C28002C9A7F /* TeslaConcept */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FA88C876251A6C28002C9A7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F121CFD3251F9AEC003143D7 /* mapStyleConfig.json in Resources */,
+				F121CFD6251FAAA5003143D7 /* Right.xcassets in Resources */,
+				FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */,
+				FA4B881A251D1A96005ECE5F /* Left.xcassets in Resources */,
+				FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42B895A793A338B1B9ED3232 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56B12397B5CA8529427E4C95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TeslaConcept-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBE31BB5B1526C1A58BE7B53 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA88C874251A6C28002C9A7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA88C880251A6C28002C9A7F /* RightViewController.swift in Sources */,
+				FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */,
+				FA4B881C251D458B005ECE5F /* GoogleMapsViewController.swift in Sources */,
+				F121CFDF251FE694003143D7 /* Store.swift in Sources */,
+				FA88C890251A81E1002C9A7F /* MainViewModel.swift in Sources */,
+				FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */,
+				F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */,
+				FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA88C887251A6C2B002C9A7F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FA88C88A251A6C2B002C9A7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FA88C88B251A6C2B002C9A7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FA88C88D251A6C2B002C9A7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 452158478D1AFB3950D2AC54 /* Pods-TeslaConcept.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RF42FG352F;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"USE_GOOGLE_MAPS=1",
+				);
+				INFOPLIST_FILE = TeslaConcept/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.adeveloper.TeslaConcept;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		FA88C88E251A6C2B002C9A7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF7510DF19F0A7725EEB92EC /* Pods-TeslaConcept.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RF42FG352F;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					USE_GOOGLE_MAPS,
+					"=",
+					1,
+				);
+				INFOPLIST_FILE = TeslaConcept/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.adeveloper.TeslaConcept;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA88C873251A6C28002C9A7F /* Build configuration list for PBXProject "TeslaConcept" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA88C88A251A6C2B002C9A7F /* Debug */,
+				FA88C88B251A6C2B002C9A7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA88C88C251A6C2B002C9A7F /* Build configuration list for PBXNativeTarget "TeslaConcept" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA88C88D251A6C2B002C9A7F /* Debug */,
+				FA88C88E251A6C2B002C9A7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA88C870251A6C28002C9A7F /* Project object */;
+}
