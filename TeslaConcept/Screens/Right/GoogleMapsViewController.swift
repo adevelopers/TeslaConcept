@@ -20,7 +20,8 @@ class MapViewModel {
     let didTapTrackLocation: PassthroughSubject<Void, Never>
     let didTapCurrentLocation: PassthroughSubject<Void, Never>
     
-    init(didTapTrack: PassthroughSubject<Void, Never>, didTapCurrent: PassthroughSubject<Void, Never>) {
+    init(didTapTrack: PassthroughSubject<Void, Never>,
+         didTapCurrent: PassthroughSubject<Void, Never>) {
         self.didTapTrackLocation = didTapTrack
         self.didTapCurrentLocation = didTapCurrent
     }

@@ -87,6 +87,7 @@
 		F121CFD8251FBA11003143D7 /* Left */ = {
 			isa = PBXGroup;
 			children = (
+				FA4B8819251D1A96005ECE5F /* Left.xcassets */,
 				FA4B8817251D130B005ECE5F /* LeftViewController.swift */,
 				F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */,
 			);
@@ -96,6 +97,7 @@
 		F121CFD9251FBA20003143D7 /* Right */ = {
 			isa = PBXGroup;
 			children = (
+				F121CFD5251FAAA5003143D7 /* Right.xcassets */,
 				FA88C87F251A6C28002C9A7F /* RightViewController.swift */,
 				FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */,
 			);
@@ -129,8 +131,6 @@
 				FA88C884251A6C2B002C9A7F /* Assets.xcassets */,
 				FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */,
 				FA88C889251A6C2B002C9A7F /* Info.plist */,
-				FA4B8819251D1A96005ECE5F /* Left.xcassets */,
-				F121CFD5251FAAA5003143D7 /* Right.xcassets */,
 				F121CFDE251FE694003143D7 /* Store.swift */,
 			);
 			path = TeslaConcept;
