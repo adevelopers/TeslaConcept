@@ -40,6 +40,9 @@ final class GoogleMapsViewController: UIViewController {
     
     var viewModel: MapViewModel
     
+    var route: GMSPolyline?
+    var routePath: GMSMutablePath?
+    
     private lazy var mapView: GMSMapView = {
         let view = GMSMapView()
         return view
@@ -48,7 +51,7 @@ final class GoogleMapsViewController: UIViewController {
     private lazy var camera: GMSCameraPosition = {
         return GMSCameraPosition(latitude: viewModel.podolsk.latitude,
                                  longitude: viewModel.podolsk.longitude,
-                                 zoom: 14)
+                                 zoom: 16)
     }()
     
     private lazy var label: UILabel = {
@@ -82,6 +85,8 @@ final class GoogleMapsViewController: UIViewController {
         configureMapStyle()
         setupLocationManager()
         setupSubscriptions()
+        
+        setupRoute()
     }
     
     private func setupUI() {
@@ -118,6 +123,15 @@ final class GoogleMapsViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    private func setupRoute() {
+        route?.map = nil
+        route = GMSPolyline()
+        route?.strokeColor = UIColor.orange
+        route?.strokeWidth = 6
+        routePath = GMSMutablePath()
+        route?.map = mapView
+    }
+    
     private func configureMapStyle() {
         if
             let jsonStyleUrl = Bundle.main.url(forResource: "mapStyleConfig", withExtension: "json"),
@@ -136,7 +150,7 @@ final class GoogleMapsViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.delegate = self
-//        locationManager?.startUpdatingLocation()
+        locationManager?.startUpdatingLocation()
     }
     
     private func didTapOnCurrentLocation() {
@@ -146,6 +160,8 @@ final class GoogleMapsViewController: UIViewController {
     
     private func didTapOnTrackLocation() {
         print("track location")
+        
+
         locationManager?.startUpdatingLocation()
     }
     
@@ -171,8 +187,12 @@ extension GoogleMapsViewController: CLLocationManagerDelegate {
         
         if let location = locations.first {
             print("position: ", location)
-            let marker = GMSMarker(position: location.coordinate)
-            marker.map = mapView
+            routePath?.add(location.coordinate)
+            // Обновляем путь у линии маршрута путём повторного присвоения
+            route?.path = routePath
+
+//            let marker = GMSMarker(position: location.coordinate)
+//            marker.map = mapView
             mapView.animate(toLocation: location.coordinate)
         }
     }
