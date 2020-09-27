@@ -13,9 +13,12 @@ import Combine
 
 final class LeftViewController: UIViewController {
     
-    private lazy var label: UILabel = {
+    private lazy var speedLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -87,30 +90,30 @@ final class LeftViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        label.text = "Скорость"
+        speedLabel.text = "Скорость"
         setupUI()
         setupSubscriptions()
     }
     
     private func setupUI() {
         view.backgroundColor = .black
-        view.addSubview(label)
+        view.addSubview(speedLabel)
         
-        label
+        speedLabel
             .add(to: view)
             .top(to: \.topAnchor, constant: 48)
             .centerX(to: \.centerXAnchor)
         
         trackLocationButton
             .add(to: view)
-            .top(to: \.bottomAnchor, of: label, relation: .equal, constant: 16, priority: .defaultHigh)
+            .top(to: \.bottomAnchor, of: speedLabel, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.leftAnchor, constant: 16)
             .width(48)
             .height(48)
         
         currentLocationButton
             .add(to: view)
-            .top(to: \.bottomAnchor, of: label, relation: .equal, constant: 16, priority: .defaultHigh)
+            .top(to: \.bottomAnchor, of: speedLabel, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.rightAnchor, of: trackLocationButton, constant: 16)
             .width(48)
             .height(48)
@@ -149,7 +152,11 @@ final class LeftViewController: UIViewController {
     }
     
     private func setupSubscriptions() {
-        
+        viewModel.speed
+            .map { "\($0) mps" }
+            .assign(to: \.text, on: speedLabel)
+            .store(in: &cancellables)
+            
     }
     
 }

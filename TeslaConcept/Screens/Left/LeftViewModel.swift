@@ -15,14 +15,17 @@ class LeftViewModel {
     let didTapCurrentLocation: PassthroughSubject<Void, Never>
     let didTapStartTrack: PassthroughSubject<Void, Never>
     let didTapStopTrack: PassthroughSubject<Void, Never>
+    let speed: CurrentValueSubject<Double, Never>
     
     init(didTapTrack: PassthroughSubject<Void, Never>,
          didTapCurrent: PassthroughSubject<Void, Never>,
          didTapStartTrack: PassthroughSubject<Void, Never>,
-         didTapStopTrack: PassthroughSubject<Void, Never>) {
+         didTapStopTrack: PassthroughSubject<Void, Never>,
+         speed: CurrentValueSubject<Double, Never>) {
         self.didTapTrackLocation = didTapTrack
         self.didTapCurrentLocation = didTapCurrent
         self.didTapStartTrack = didTapStartTrack
         self.didTapStopTrack = didTapStopTrack
+        self.speed = speed
     }
 }

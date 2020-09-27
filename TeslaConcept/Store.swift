@@ -15,4 +15,5 @@ class Store {
     let didTapCurrentLocation: PassthroughSubject<Void, Never> = .init()
     let didTapStartTrack: PassthroughSubject<Void, Never> = .init()
     let didTapStopTrack: PassthroughSubject<Void, Never> = .init()
+    let speed: CurrentValueSubject<Double, Never> = .init(0)
 }

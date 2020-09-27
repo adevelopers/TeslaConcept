@@ -22,15 +22,19 @@ class MapViewModel {
     let didTapStartTrack: PassthroughSubject<Void, Never>
     let didTapStopTrack: PassthroughSubject<Void, Never>
     
+    let speed: CurrentValueSubject<Double, Never>
+    
     init(didTapTrack: PassthroughSubject<Void, Never>,
          didTapCurrent: PassthroughSubject<Void, Never>,
          didTapStartTrack: PassthroughSubject<Void, Never>,
-         didTapStopTrack: PassthroughSubject<Void, Never>
+         didTapStopTrack: PassthroughSubject<Void, Never>,
+         speed: CurrentValueSubject<Double, Never>
     ) {
         self.didTapTrackLocation = didTapTrack
         self.didTapCurrentLocation = didTapCurrent
         self.didTapStartTrack = didTapStartTrack
         self.didTapStopTrack = didTapStopTrack
+        self.speed = speed
     }
     
 }
@@ -186,6 +190,7 @@ extension GoogleMapsViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
+            viewModel.speed.send(location.speed)
             print("position: ", location)
             routePath?.add(location.coordinate)
             // Обновляем путь у линии маршрута путём повторного присвоения

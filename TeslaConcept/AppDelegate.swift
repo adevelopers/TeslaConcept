@@ -34,12 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             LeftViewController(viewModel: LeftViewModel.init(didTapTrack: store.didTapTrackLocation,
                                                              didTapCurrent: store.didTapCurrentLocation,
                                                              didTapStartTrack: store.didTapStartTrack,
-                                                             didTapStopTrack: store.didTapStopTrack
+                                                             didTapStopTrack: store.didTapStopTrack,
+                                                             speed: store.speed
                                                              )),
             GoogleMapsViewController(viewModel: MapViewModel(didTapTrack: store.didTapTrackLocation,
                                                              didTapCurrent: store.didTapCurrentLocation,
                                                              didTapStartTrack: store.didTapStartTrack,
-                                                             didTapStopTrack: store.didTapStopTrack
+                                                             didTapStopTrack: store.didTapStopTrack,
+                                                             speed: store.speed
                                                              ))
         ]
         
