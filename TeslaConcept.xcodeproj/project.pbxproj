@@ -20,7 +20,7 @@
 		FA88C880251A6C28002C9A7F /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87F251A6C28002C9A7F /* RightViewController.swift */; };
 		FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA88C884251A6C2B002C9A7F /* Assets.xcassets */; };
 		FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */; };
-		FA88C890251A81E1002C9A7F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C88F251A81E1002C9A7F /* MainViewModel.swift */; };
+		FA88C890251A81E1002C9A7F /* MapKitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C88F251A81E1002C9A7F /* MapKitViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		FA88C884251A6C2B002C9A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA88C887251A6C2B002C9A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA88C889251A6C2B002C9A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA88C88F251A81E1002C9A7F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		FA88C88F251A81E1002C9A7F /* MapKitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitViewModel.swift; sourceTree = "<group>"; };
 		FF7510DF19F0A7725EEB92EC /* Pods-TeslaConcept.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaConcept.release.xcconfig"; path = "Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +79,6 @@
 				FA4B8815251D10B7005ECE5F /* SplitViewController.swift */,
 				F121CFD8251FBA11003143D7 /* Left */,
 				F121CFD9251FBA20003143D7 /* Right */,
-				FA88C88F251A81E1002C9A7F /* MainViewModel.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -99,6 +98,7 @@
 			children = (
 				F121CFD5251FAAA5003143D7 /* Right.xcassets */,
 				FA88C87F251A6C28002C9A7F /* RightViewController.swift */,
+				FA88C88F251A81E1002C9A7F /* MapKitViewModel.swift */,
 				FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */,
 			);
 			path = Right;
@@ -275,7 +275,7 @@
 				FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */,
 				FA4B881C251D458B005ECE5F /* GoogleMapsViewController.swift in Sources */,
 				F121CFDF251FE694003143D7 /* Store.swift in Sources */,
-				FA88C890251A81E1002C9A7F /* MainViewModel.swift in Sources */,
+				FA88C890251A81E1002C9A7F /* MapKitViewModel.swift in Sources */,
 				FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */,
 				F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */,
 				FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */,

@@ -13,4 +13,6 @@ import Combine
 class Store {
     let didTapTrackLocation: PassthroughSubject<Void, Never> = .init()
     let didTapCurrentLocation: PassthroughSubject<Void, Never> = .init()
+    let didTapStartTrack: PassthroughSubject<Void, Never> = .init()
+    let didTapStopTrack: PassthroughSubject<Void, Never> = .init()
 }

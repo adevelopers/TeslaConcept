@@ -24,9 +24,9 @@ class RightViewController: UIViewController {
        return map
     }()
     
-    let viewModel: MainViewModel
+    let viewModel: MapKitViewModel
     
-    init(viewModel: MainViewModel) {
+    init(viewModel: MapKitViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         

@@ -32,10 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let splitController = SplitViewController()
         splitController.viewControllers = [
             LeftViewController(viewModel: LeftViewModel.init(didTapTrack: store.didTapTrackLocation,
-                                                             didTapCurrent: store.didTapCurrentLocation)),
+                                                             didTapCurrent: store.didTapCurrentLocation,
+                                                             didTapStartTrack: store.didTapStartTrack,
+                                                             didTapStopTrack: store.didTapStopTrack
+                                                             )),
             GoogleMapsViewController(viewModel: MapViewModel(didTapTrack: store.didTapTrackLocation,
-                                                             didTapCurrent: store.didTapCurrentLocation))
-//            RightViewController(viewModel: MainViewModel())
+                                                             didTapCurrent: store.didTapCurrentLocation,
+                                                             didTapStartTrack: store.didTapStartTrack,
+                                                             didTapStopTrack: store.didTapStopTrack
+                                                             ))
         ]
         
         window?.rootViewController = splitController

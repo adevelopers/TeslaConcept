@@ -11,49 +11,6 @@ import VanillaConstraints
 import Combine
 
 
-struct UIControlPublisher<Control: UIControl>: Publisher {
-
-    typealias Output = Control
-    typealias Failure = Never
-
-    let control: Control
-    let controlEvents: UIControl.Event
-
-    init(control: Control, events: UIControl.Event) {
-        self.control = control
-        self.controlEvents = events
-    }
-    
-    func receive<S>(subscriber: S) where S : Subscriber, S.Failure == UIControlPublisher.Failure, S.Input == UIControlPublisher.Output {
-        let subscription = UIControlSubscription(subscriber: subscriber, control: control, event: controlEvents)
-        subscriber.receive(subscription: subscription)
-    }
-}
-
-final class UIControlSubscription<SubscriberType: Subscriber, Control: UIControl>: Subscription where SubscriberType.Input == Control {
-    private var subscriber: SubscriberType?
-    private let control: Control
-
-    init(subscriber: SubscriberType, control: Control, event: UIControl.Event) {
-        self.subscriber = subscriber
-        self.control = control
-        control.addTarget(self, action: #selector(eventHandler), for: event)
-    }
-
-    func request(_ demand: Subscribers.Demand) {
-        // We do nothing here as we only want to send events when they occur.
-        // See, for more info: https://developer.apple.com/documentation/combine/subscribers/demand
-    }
-
-    func cancel() {
-        subscriber = nil
-    }
-
-    @objc private func eventHandler() {
-        _ = subscriber?.receive(control)
-    }
-}
-
 final class LeftViewController: UIViewController {
     
     private lazy var label: UILabel = {
@@ -85,9 +42,34 @@ final class LeftViewController: UIViewController {
         return view
     }()
     
+    private lazy var startTrackButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Начать новый трек", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var stopTrackButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Закончить трек", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var buttonsStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .equalCentering
+        stackView.addArrangedSubview(startTrackButton)
+        stackView.addArrangedSubview(stopTrackButton)
+        return stackView
+    }()
+    
     let viewModel: LeftViewModel
     var cancellables = Set<AnyCancellable>()
-    
     
     init(viewModel: LeftViewModel) {
         self.viewModel = viewModel
@@ -109,8 +91,6 @@ final class LeftViewController: UIViewController {
         setupUI()
         setupSubscriptions()
     }
-    
-    var controlPublisher: ControlPublisher<UIButton>!
     
     private func setupUI() {
         view.backgroundColor = .black
@@ -135,11 +115,19 @@ final class LeftViewController: UIViewController {
             .width(48)
             .height(48)
         
+        buttonsStack
+            .add(to: view)
+            .top(to: \.bottomAnchor, of: trackLocationButton, relation: .equal, constant: 16, priority: .defaultHigh)
+            .left(to: \.leftAnchor, constant: 16)
+            .right(to: \.rightAnchor, constant: 16)
+            .height(48)
+        
         imageView
             .add(to: view)
             .centerY(to: \.centerYAnchor)
             .width(to: \.widthAnchor)
             .height(to: \.widthAnchor, multiplier: CGFloat(580/353))
+        
     }
     
     @objc
@@ -149,6 +137,12 @@ final class LeftViewController: UIViewController {
             viewModel.didTapTrackLocation.send()
         case currentLocationButton:
             viewModel.didTapCurrentLocation.send()
+        case startTrackButton:
+            print("startTrackButton")
+            viewModel.didTapStartTrack.send()
+        case stopTrackButton:
+            print("stopTrackButton")
+            viewModel.didTapStopTrack.send()
         default:
             ()
         }

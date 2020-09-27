@@ -19,11 +19,18 @@ class MapViewModel {
     
     let didTapTrackLocation: PassthroughSubject<Void, Never>
     let didTapCurrentLocation: PassthroughSubject<Void, Never>
+    let didTapStartTrack: PassthroughSubject<Void, Never>
+    let didTapStopTrack: PassthroughSubject<Void, Never>
     
     init(didTapTrack: PassthroughSubject<Void, Never>,
-         didTapCurrent: PassthroughSubject<Void, Never>) {
+         didTapCurrent: PassthroughSubject<Void, Never>,
+         didTapStartTrack: PassthroughSubject<Void, Never>,
+         didTapStopTrack: PassthroughSubject<Void, Never>
+    ) {
         self.didTapTrackLocation = didTapTrack
         self.didTapCurrentLocation = didTapCurrent
+        self.didTapStartTrack = didTapStartTrack
+        self.didTapStopTrack = didTapStopTrack
     }
     
 }
@@ -67,15 +74,14 @@ final class GoogleMapsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        super.loadView()
-        setupUI()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDarkTheme()
         label.text = "View"
+        setupUI()
+        configureMapStyle()
+        setupLocationManager()
+        setupSubscriptions()
     }
     
     private func setupUI() {
@@ -92,16 +98,23 @@ final class GoogleMapsViewController: UIViewController {
         mapView.setMinZoom(1, maxZoom: 50)
         mapView.camera = camera
         mapView.delegate = self
-        
-        configureMapStyle()
-        setupLocationManager()
-        
+    }
+    
+    private func setupSubscriptions() {
         viewModel.didTapTrackLocation
             .sink(receiveValue: didTapOnTrackLocation)
             .store(in: &cancellables)
         
         viewModel.didTapCurrentLocation
             .sink(receiveValue: didTapOnCurrentLocation)
+            .store(in: &cancellables)
+        
+        viewModel.didTapStartTrack
+            .sink(receiveValue: didTapOnStartTrack)
+            .store(in: &cancellables)
+        
+        viewModel.didTapStopTrack
+            .sink(receiveValue: didTapOnStopTrack)
             .store(in: &cancellables)
     }
     
@@ -123,7 +136,7 @@ final class GoogleMapsViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.delegate = self
-        locationManager?.startUpdatingLocation()
+//        locationManager?.startUpdatingLocation()
     }
     
     private func didTapOnCurrentLocation() {
@@ -134,6 +147,14 @@ final class GoogleMapsViewController: UIViewController {
     private func didTapOnTrackLocation() {
         print("track location")
         locationManager?.startUpdatingLocation()
+    }
+    
+    private func didTapOnStartTrack() {
+        print("Начать трек")
+    }
+    
+    private func didTapOnStopTrack() {
+        print("Закончить трек")
     }
     
 }

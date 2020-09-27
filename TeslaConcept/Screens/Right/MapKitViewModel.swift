@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 
-class MainViewModel {
+class MapKitViewModel {
     
     let moscowCity = CLLocationCoordinate2D(latitude: CLLocationDegrees(integerLiteral: 55.751047),
                                             longitude: CLLocationDegrees(integerLiteral: 37.527076))
