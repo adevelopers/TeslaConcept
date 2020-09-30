@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		BBDC7D9D9B43B9354D4A188F /* Pods_TeslaConcept.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53727D41AA6A19FFB3E068DD /* Pods_TeslaConcept.framework */; };
 		F121CFD3251F9AEC003143D7 /* mapStyleConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = F121CFD2251F9AEC003143D7 /* mapStyleConfig.json */; };
-		F121CFD6251FAAA5003143D7 /* Right.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F121CFD5251FAAA5003143D7 /* Right.xcassets */; };
 		F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */; };
 		F121CFDF251FE694003143D7 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = F121CFDE251FE694003143D7 /* Store.swift */; };
 		FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B8815251D10B7005ECE5F /* SplitViewController.swift */; };
 		FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B8817251D130B005ECE5F /* LeftViewController.swift */; };
 		FA4B881A251D1A96005ECE5F /* Left.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA4B8819251D1A96005ECE5F /* Left.xcassets */; };
 		FA4B881C251D458B005ECE5F /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */; };
+		FA6237FC2524801600CCBF8C /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6237FB2524801600CCBF8C /* PrimaryButton.swift */; };
+		FA6238002524817400CCBF8C /* AppColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6237FF2524817400CCBF8C /* AppColors.xcassets */; };
 		FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87B251A6C28002C9A7F /* AppDelegate.swift */; };
 		FA88C880251A6C28002C9A7F /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87F251A6C28002C9A7F /* RightViewController.swift */; };
 		FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA88C884251A6C2B002C9A7F /* Assets.xcassets */; };
@@ -27,13 +28,14 @@
 		452158478D1AFB3950D2AC54 /* Pods-TeslaConcept.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeslaConcept.debug.xcconfig"; path = "Target Support Files/Pods-TeslaConcept/Pods-TeslaConcept.debug.xcconfig"; sourceTree = "<group>"; };
 		53727D41AA6A19FFB3E068DD /* Pods_TeslaConcept.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeslaConcept.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F121CFD2251F9AEC003143D7 /* mapStyleConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapStyleConfig.json; sourceTree = "<group>"; };
-		F121CFD5251FAAA5003143D7 /* Right.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Right.xcassets; sourceTree = "<group>"; };
 		F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewModel.swift; sourceTree = "<group>"; };
 		F121CFDE251FE694003143D7 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		FA4B8815251D10B7005ECE5F /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		FA4B8817251D130B005ECE5F /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		FA4B8819251D1A96005ECE5F /* Left.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Left.xcassets; sourceTree = "<group>"; };
 		FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
+		FA6237FB2524801600CCBF8C /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		FA6237FF2524817400CCBF8C /* AppColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppColors.xcassets; sourceTree = "<group>"; };
 		FA88C878251A6C28002C9A7F /* TeslaConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslaConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA88C87B251A6C28002C9A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA88C87F251A6C28002C9A7F /* RightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				FA4B8815251D10B7005ECE5F /* SplitViewController.swift */,
 				F121CFD8251FBA11003143D7 /* Left */,
 				F121CFD9251FBA20003143D7 /* Right */,
+				FA6237FF2524817400CCBF8C /* AppColors.xcassets */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -86,6 +89,7 @@
 		F121CFD8251FBA11003143D7 /* Left */ = {
 			isa = PBXGroup;
 			children = (
+				FA6237FA2524800400CCBF8C /* Views */,
 				FA4B8819251D1A96005ECE5F /* Left.xcassets */,
 				FA4B8817251D130B005ECE5F /* LeftViewController.swift */,
 				F121CFDA251FBAFF003143D7 /* LeftViewModel.swift */,
@@ -96,12 +100,19 @@
 		F121CFD9251FBA20003143D7 /* Right */ = {
 			isa = PBXGroup;
 			children = (
-				F121CFD5251FAAA5003143D7 /* Right.xcassets */,
 				FA88C87F251A6C28002C9A7F /* RightViewController.swift */,
 				FA88C88F251A81E1002C9A7F /* MapKitViewModel.swift */,
 				FA4B881B251D458B005ECE5F /* GoogleMapsViewController.swift */,
 			);
 			path = Right;
+			sourceTree = "<group>";
+		};
+		FA6237FA2524800400CCBF8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA6237FB2524801600CCBF8C /* PrimaryButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA88C86F251A6C28002C9A7F = {
@@ -198,7 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F121CFD3251F9AEC003143D7 /* mapStyleConfig.json in Resources */,
-				F121CFD6251FAAA5003143D7 /* Right.xcassets in Resources */,
+				FA6238002524817400CCBF8C /* AppColors.xcassets in Resources */,
 				FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */,
 				FA4B881A251D1A96005ECE5F /* Left.xcassets in Resources */,
 				FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */,
@@ -278,6 +289,7 @@
 				FA88C890251A81E1002C9A7F /* MapKitViewModel.swift in Sources */,
 				FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */,
 				F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */,
+				FA6237FC2524801600CCBF8C /* PrimaryButton.swift in Sources */,
 				FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
