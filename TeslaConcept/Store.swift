@@ -9,6 +9,11 @@
 import Foundation
 import Combine
 
+enum GoogleMapsViewState {
+    case none
+    case tracking
+    case history
+}
 
 class Store {
     let didTapTrackLocation: PassthroughSubject<Void, Never> = .init()
