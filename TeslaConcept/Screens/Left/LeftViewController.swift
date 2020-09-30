@@ -13,6 +13,10 @@ import Combine
 
 final class LeftViewController: UIViewController {
     
+    private var store: Store = {
+        return Store.shared
+    }()
+    
     private lazy var speedLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -69,6 +73,7 @@ final class LeftViewController: UIViewController {
         return button
     }()
     
+    private weak var sourceView: UIView?
     
     private lazy var buttonsStack: UIStackView = {
         let stackView = UIStackView()
@@ -137,7 +142,6 @@ final class LeftViewController: UIViewController {
             .add(to: view)
             .top(to: \.bottomAnchor, of: buttonsStack, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.leftAnchor, constant: 16)
-//            .right(to: \.rightAnchor, constant: 16)
             .height(48)
         
             
@@ -150,22 +154,32 @@ final class LeftViewController: UIViewController {
         
     }
     
+    
     @objc
     private func didTap(_ button: UIButton) {
+        sourceView = button
+        
         switch button {
         case trackLocationButton:
+            store.state.send(.tracking)
             viewModel.didTapTrackLocation.send()
         case currentLocationButton:
             viewModel.didTapCurrentLocation.send()
         case startTrackButton:
-            print("startTrackButton")
+            store.state.send(.tracking)
             viewModel.didTapStartTrack.send()
         case stopTrackButton:
-            print("stopTrackButton")
+            store.state.send(.none)
             viewModel.didTapStopTrack.send()
         case previousTrackButton:
-            print("Предыдущий маршрут")
-            viewModel.didTapPreviousTrack.send()
+            switch store.state.value {
+            case .tracking:
+                confirm()
+            default:
+                store.state.send(.history)
+                viewModel.didTapPreviousTrack.send()
+            }
+            
         default:
             ()
         }
@@ -180,6 +194,34 @@ final class LeftViewController: UIViewController {
             
     }
     
+    private func confirm() {
+        let controller: UIAlertController = {
+            let alert = UIAlertController(title: "Трэк ещё не завершён",
+                                          message: "Вы хотите остановить запись трека ?",
+                                          preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Остановить",
+                                          style: .destructive,
+                                          handler: confirmOK))
+            alert.addAction(UIAlertAction(title: "Продолжить",
+                                          style: .default,
+                                          handler: confirmCancel))
+            
+            return alert
+        }()
+        
+        if let popoverController = controller.popoverPresentationController {
+            popoverController.sourceView = sourceView
+        }
+        
+        present(controller, animated: true)
+    }
+    
+    private func confirmOK(_ action: UIAlertAction) {
+        store.state.send(.history)
+        viewModel.didTapPreviousTrack.send()
+    }
+    
+    private func confirmCancel(_ action: UIAlertAction) {
+        print("confirmCancel")
+    }
 }
-
-

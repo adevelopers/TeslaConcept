@@ -13,8 +13,6 @@ import CoreLocation
 import Combine
 
 
-
-
 final class GoogleMapsViewController: UIViewController {
     
     var viewModel: MapViewModel
@@ -41,7 +39,6 @@ final class GoogleMapsViewController: UIViewController {
     
     private var locationManager: CLLocationManager?
     
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -65,7 +62,6 @@ final class GoogleMapsViewController: UIViewController {
         configureMapStyle()
         setupLocationManager()
         setupSubscriptions()
-        
     }
     
     private func setupUI() {
@@ -136,7 +132,6 @@ final class GoogleMapsViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.delegate = self
-        locationManager?.startUpdatingLocation()
     }
     
     private func didTapOnCurrentLocation() {
@@ -151,6 +146,7 @@ final class GoogleMapsViewController: UIViewController {
     
     private func didTapOnStartTrack() {
         print("Начать трек")
+        locationManager?.startUpdatingLocation()
         mapStartNewTrack()
         viewModel.startTrack()
     }
@@ -167,7 +163,6 @@ final class GoogleMapsViewController: UIViewController {
     private func didTapOnStopTrack() {
         locationManager?.stopUpdatingLocation()
     }
-    
 }
 
 extension GoogleMapsViewController: GMSMapViewDelegate {
