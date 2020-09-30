@@ -52,6 +52,7 @@ final class LeftViewController: UIViewController {
         return button
     }()
     
+    
     private lazy var stopTrackButton: PrimaryButton = {
         let button = PrimaryButton()
         button.setTitle("Закончить трек", for: .normal)
@@ -60,6 +61,15 @@ final class LeftViewController: UIViewController {
         return button
     }()
     
+    private lazy var previousTrackButton: PrimaryButton = {
+        let button = PrimaryButton()
+        button.setTitle("Предыдущий маршрут", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+    
+    
     private lazy var buttonsStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -67,6 +77,7 @@ final class LeftViewController: UIViewController {
         stackView.distribution = .equalCentering
         stackView.addArrangedSubview(startTrackButton)
         stackView.addArrangedSubview(stopTrackButton)
+        
         return stackView
     }()
     
@@ -107,14 +118,12 @@ final class LeftViewController: UIViewController {
             .add(to: view)
             .top(to: \.bottomAnchor, of: speedLabel, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.leftAnchor, constant: 16)
-//            .width(48)
             .height(48)
         
         currentLocationButton
             .add(to: view)
             .top(to: \.bottomAnchor, of: speedLabel, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.rightAnchor, of: trackLocationButton, constant: 16)
-//            .width(48)
             .height(48)
         
         buttonsStack
@@ -123,6 +132,15 @@ final class LeftViewController: UIViewController {
             .left(to: \.leftAnchor, constant: 16)
             .right(to: \.rightAnchor, constant: 16)
             .height(48)
+        
+        previousTrackButton
+            .add(to: view)
+            .top(to: \.bottomAnchor, of: buttonsStack, relation: .equal, constant: 16, priority: .defaultHigh)
+            .left(to: \.leftAnchor, constant: 16)
+//            .right(to: \.rightAnchor, constant: 16)
+            .height(48)
+        
+            
         
         imageView
             .add(to: view)
@@ -145,6 +163,9 @@ final class LeftViewController: UIViewController {
         case stopTrackButton:
             print("stopTrackButton")
             viewModel.didTapStopTrack.send()
+        case previousTrackButton:
+            print("Предыдущий маршрут")
+            viewModel.didTapPreviousTrack.send()
         default:
             ()
         }
@@ -152,6 +173,7 @@ final class LeftViewController: UIViewController {
     
     private func setupSubscriptions() {
         viewModel.speed
+            .filter({ $0 > 0 } )
             .map { "\($0) mps" }
             .assign(to: \.text, on: speedLabel)
             .store(in: &cancellables)
@@ -161,32 +183,3 @@ final class LeftViewController: UIViewController {
 }
 
 
-class ControlPublisher<T: UIControl>: Publisher {
-    typealias ControlEvent = (control: UIControl, event: UIControl.Event)
-    typealias Output = ControlEvent
-    typealias Failure = Never
-    
-    let subject = PassthroughSubject<Output, Failure>()
-    
-    convenience init(control: UIControl, event: UIControl.Event) {
-        self.init(control: control, events: [event])
-    }
-    
-    init(control: UIControl, events: [UIControl.Event]) {
-        for event in events {
-            control.addTarget(self, action: #selector(controlAction), for: event)
-        }
-    }
-    
-    @objc
-    private func controlAction(sender: UIControl, forEvent event: UIControl.Event) {
-        subject.send(ControlEvent(control: sender, event: event))
-    }
-    
-    func receive<S>(subscriber: S) where S :
-        Subscriber,
-        ControlPublisher.Failure == S.Failure,
-        ControlPublisher.Output == S.Input {
-        subject.receive(subscriber: subscriber)
-    }
-}
