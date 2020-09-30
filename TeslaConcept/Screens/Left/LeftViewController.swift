@@ -17,6 +17,9 @@ final class LeftViewController: UIViewController {
         return Store.shared
     }()
     
+    // MARK: Background
+    private var backgroundTaskId: UIBackgroundTaskIdentifier = .invalid
+    
     private lazy var speedLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -166,11 +169,13 @@ final class LeftViewController: UIViewController {
         case currentLocationButton:
             viewModel.didTapCurrentLocation.send()
         case startTrackButton:
+            startBackgroundTrack()
             store.state.send(.tracking)
             viewModel.didTapStartTrack.send()
         case stopTrackButton:
             store.state.send(.none)
             viewModel.didTapStopTrack.send()
+            finishBackgroundTrack()
         case previousTrackButton:
             switch store.state.value {
             case .tracking:
@@ -179,7 +184,6 @@ final class LeftViewController: UIViewController {
                 store.state.send(.history)
                 viewModel.didTapPreviousTrack.send()
             }
-            
         default:
             ()
         }
@@ -191,7 +195,6 @@ final class LeftViewController: UIViewController {
             .map { "\($0) mps" }
             .assign(to: \.text, on: speedLabel)
             .store(in: &cancellables)
-            
     }
     
     private func confirm() {
@@ -224,4 +227,18 @@ final class LeftViewController: UIViewController {
     private func confirmCancel(_ action: UIAlertAction) {
         print("confirmCancel")
     }
+    
+    private func startBackgroundTrack() {
+        backgroundTaskId = UIApplication.shared.beginBackgroundTask { [weak self] in
+            guard let self = self else { return }
+            UIApplication.shared.endBackgroundTask(self.backgroundTaskId)
+            self.backgroundTaskId = .invalid
+        }
+    }
+    
+    private func finishBackgroundTrack() {
+        UIApplication.shared.endBackgroundTask(backgroundTaskId)
+        backgroundTaskId = .invalid
+    }
+    
 }
