@@ -12,6 +12,8 @@ import RealmSwift
 class Track: Object {
     
     @objc dynamic var id: String = UUID().uuidString
+    @objc dynamic var startDate = Date()
+    @objc dynamic var endDate = Date()
     let points = List<Location>()
     
     override static func primaryKey() -> String? {

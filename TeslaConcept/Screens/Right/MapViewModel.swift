@@ -121,7 +121,7 @@ class MapViewModel {
     
     func loadTrack() {
         if let dto = realm.objects(Track.self)
-            .first
+            .last
             .map(trackToPolyline) {
             track.send(dto)
         }
