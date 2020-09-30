@@ -9,5 +9,6 @@ target 'TeslaConcept' do
   pod 'VanillaConstraints'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RealmSwift'
 
 end
