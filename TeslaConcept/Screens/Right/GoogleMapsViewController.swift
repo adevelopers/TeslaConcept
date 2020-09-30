@@ -70,7 +70,6 @@ final class GoogleMapsViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .black
-        
         label
             .add(to: view)
             .center()
@@ -115,6 +114,7 @@ final class GoogleMapsViewController: UIViewController {
         let camera = GMSCameraPosition(latitude: dto.lastCoordinate.latitude,
                                        longitude: dto.lastCoordinate.longitude,
                                        zoom: 16, bearing: 0, viewingAngle: 45)
+        addMarker(position: dto.lastCoordinate)
         mapView.animate(to: camera)
     }
     
@@ -188,8 +188,6 @@ extension GoogleMapsViewController: CLLocationManagerDelegate {
             // Обновляем путь у линии маршрута путём повторного присвоения
             route?.path = routePath
 
-//            let marker = GMSMarker(position: location.coordinate)
-//            marker.map = mapView
             mapView.animate(toLocation: location.coordinate)
         }
     }
