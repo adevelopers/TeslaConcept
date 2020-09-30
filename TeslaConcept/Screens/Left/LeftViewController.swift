@@ -22,16 +22,15 @@ final class LeftViewController: UIViewController {
         return label
     }()
     
-    private lazy var trackLocationButton: UIButton = {
-        let button = UIButton()
+    private lazy var trackLocationButton: PrimaryButton = {
+        let button = PrimaryButton()
         button.setImage(UIImage(imageLiteralResourceName: "trackLocation"), for: .normal)
-        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         return button
     }()
     
-    private lazy var currentLocationButton: UIButton = {
-        let button = UIButton()
+    private lazy var currentLocationButton: PrimaryButton = {
+        let button = PrimaryButton()
         button.setImage(UIImage(imageLiteralResourceName: "location"), for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
@@ -45,16 +44,16 @@ final class LeftViewController: UIViewController {
         return view
     }()
     
-    private lazy var startTrackButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Начать новый трек", for: .normal)
+    private lazy var startTrackButton: PrimaryButton = {
+        let button = PrimaryButton()
+        button.setTitle("Новый трек", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         return button
     }()
     
-    private lazy var stopTrackButton: UIButton = {
-        let button = UIButton()
+    private lazy var stopTrackButton: PrimaryButton = {
+        let button = PrimaryButton()
         button.setTitle("Закончить трек", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
@@ -108,14 +107,14 @@ final class LeftViewController: UIViewController {
             .add(to: view)
             .top(to: \.bottomAnchor, of: speedLabel, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.leftAnchor, constant: 16)
-            .width(48)
+//            .width(48)
             .height(48)
         
         currentLocationButton
             .add(to: view)
             .top(to: \.bottomAnchor, of: speedLabel, relation: .equal, constant: 16, priority: .defaultHigh)
             .left(to: \.rightAnchor, of: trackLocationButton, constant: 16)
-            .width(48)
+//            .width(48)
             .height(48)
         
         buttonsStack
