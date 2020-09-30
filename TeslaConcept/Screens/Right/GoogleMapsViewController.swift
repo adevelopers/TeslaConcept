@@ -106,12 +106,10 @@ final class GoogleMapsViewController: UIViewController {
         route?.map = nil
         route = dto.polyline
         route?.map = mapView
-        
-        let camera = GMSCameraPosition(latitude: dto.lastCoordinate.latitude,
-                                       longitude: dto.lastCoordinate.longitude,
-                                       zoom: 16, bearing: 0, viewingAngle: 45)
         addMarker(position: dto.lastCoordinate)
-        mapView.animate(to: camera)
+        if let routePath = dto.polyline.path {
+            mapView.animate(with: GMSCameraUpdate.fit(GMSCoordinateBounds(path: routePath)))
+        }
     }
     
     private func configureMapStyle() {
