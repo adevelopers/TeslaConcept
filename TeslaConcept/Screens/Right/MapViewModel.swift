@@ -107,8 +107,6 @@ class MapViewModel {
     
     private func handleNewCoordinates(_ coordinate: CLLocationCoordinate2D) {
         // и будем добавлять координаты в текущий track
-        print("Новые координаты")
-        
         if let track = currentTrack {
             let newPoint = Location()
             try! realm.write {
