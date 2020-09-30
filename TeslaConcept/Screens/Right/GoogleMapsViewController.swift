@@ -13,37 +13,13 @@ import CoreLocation
 import Combine
 
 
-class MapViewModel {
-    let coordinate = CLLocationCoordinate2D(latitude: 55.753215, longitude: 37.622504)
-    let podolsk = CLLocationCoordinate2D(latitude: 55.426022, longitude: 37.531850)
-    
-    let didTapTrackLocation: PassthroughSubject<Void, Never>
-    let didTapCurrentLocation: PassthroughSubject<Void, Never>
-    let didTapStartTrack: PassthroughSubject<Void, Never>
-    let didTapStopTrack: PassthroughSubject<Void, Never>
-    
-    let speed: CurrentValueSubject<Double, Never>
-    
-    init(didTapTrack: PassthroughSubject<Void, Never>,
-         didTapCurrent: PassthroughSubject<Void, Never>,
-         didTapStartTrack: PassthroughSubject<Void, Never>,
-         didTapStopTrack: PassthroughSubject<Void, Never>,
-         speed: CurrentValueSubject<Double, Never>
-    ) {
-        self.didTapTrackLocation = didTapTrack
-        self.didTapCurrentLocation = didTapCurrent
-        self.didTapStartTrack = didTapStartTrack
-        self.didTapStopTrack = didTapStopTrack
-        self.speed = speed
-    }
-    
-}
 
 
 final class GoogleMapsViewController: UIViewController {
     
     var viewModel: MapViewModel
     
+    // track
     var route: GMSPolyline?
     var routePath: GMSMutablePath?
     
@@ -90,7 +66,6 @@ final class GoogleMapsViewController: UIViewController {
         setupLocationManager()
         setupSubscriptions()
         
-        setupRoute()
     }
     
     private func setupUI() {
@@ -125,15 +100,22 @@ final class GoogleMapsViewController: UIViewController {
         viewModel.didTapStopTrack
             .sink(receiveValue: didTapOnStopTrack)
             .store(in: &cancellables)
+        
+        viewModel.track
+            .sink(receiveValue: handleTrack)
+            .store(in: &cancellables)
     }
     
-    private func setupRoute() {
+    private func handleTrack(_ dto: TrackDTO) {
+        locationManager?.stopUpdatingLocation()
         route?.map = nil
-        route = GMSPolyline()
-        route?.strokeColor = UIColor.orange
-        route?.strokeWidth = 6
-        routePath = GMSMutablePath()
+        route = dto.polyline
         route?.map = mapView
+        
+        let camera = GMSCameraPosition(latitude: dto.lastCoordinate.latitude,
+                                       longitude: dto.lastCoordinate.longitude,
+                                       zoom: 16, bearing: 0, viewingAngle: 45)
+        mapView.animate(to: camera)
     }
     
     private func configureMapStyle() {
@@ -163,18 +145,27 @@ final class GoogleMapsViewController: UIViewController {
     }
     
     private func didTapOnTrackLocation() {
-        print("track location")
-        
-
+        print("startUpdatingLocation")
         locationManager?.startUpdatingLocation()
     }
     
     private func didTapOnStartTrack() {
         print("Начать трек")
+        mapStartNewTrack()
+        viewModel.startTrack()
+    }
+    
+    private func mapStartNewTrack() {
+        route?.map = nil
+        route = GMSPolyline()
+        route?.strokeColor = UIColor.orange
+        route?.strokeWidth = 6
+        routePath = GMSMutablePath()
+        route?.map = mapView
     }
     
     private func didTapOnStopTrack() {
-        print("Закончить трек")
+        locationManager?.stopUpdatingLocation()
     }
     
 }
@@ -192,6 +183,7 @@ extension GoogleMapsViewController: CLLocationManagerDelegate {
         if let location = locations.first {
             viewModel.speed.send(location.speed)
             print("position: ", location)
+            viewModel.trackCoordinates.send(location.coordinate)
             routePath?.add(location.coordinate)
             // Обновляем путь у линии маршрута путём повторного присвоения
             route?.path = routePath
