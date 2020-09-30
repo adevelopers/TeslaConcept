@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import RealmSwift
 
 
 @UIApplicationMain
@@ -17,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var store: Store = .init()
 
+    override init() {
+        super.init()
+        setupRealm()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         GMSServices.provideAPIKey("AIzaSyCNV4DOMwlSfGN6JLRwHQi4PyxdytswIbY")
@@ -35,12 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                              didTapCurrent: store.didTapCurrentLocation,
                                                              didTapStartTrack: store.didTapStartTrack,
                                                              didTapStopTrack: store.didTapStopTrack,
+                                                             didTapPreviousTrack: store.didTapPreviousTrack,
                                                              speed: store.speed
                                                              )),
             GoogleMapsViewController(viewModel: MapViewModel(didTapTrack: store.didTapTrackLocation,
                                                              didTapCurrent: store.didTapCurrentLocation,
                                                              didTapStartTrack: store.didTapStartTrack,
                                                              didTapStopTrack: store.didTapStopTrack,
+                                                             didTapPreviousTrack: store.didTapPreviousTrack,
                                                              speed: store.speed
                                                              ))
         ]
@@ -48,6 +56,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = splitController
         window?.makeKeyAndVisible()
         
+    }
+    
+    private func setupRealm() {
+        var config = Realm.Configuration()
+        config.deleteRealmIfMigrationNeeded = true
+        Realm.Configuration.defaultConfiguration = config
+        let realm = try! Realm()
+        print("🧊 Realm path:", realm.configuration.fileURL?.absoluteString ?? "")
     }
 }
 
