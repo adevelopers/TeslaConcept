@@ -17,6 +17,10 @@ final class GoogleMapsViewController: UIViewController {
     
     var viewModel: MapViewModel
     
+    private var store: Store = {
+        return Store.shared
+    }()
+    
     // track
     var route: GMSPolyline?
     var routePath: GMSMutablePath?
@@ -176,12 +180,19 @@ extension GoogleMapsViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
-            viewModel.speed.send(location.speed)
-            print("position: ", location)
-            viewModel.trackCoordinates.send(location.coordinate)
-            routePath?.add(location.coordinate)
-            // Обновляем путь у линии маршрута путём повторного присвоения
-            route?.path = routePath
+            switch store.state.value {
+            case .tracking:
+                viewModel.speed.send(location.speed)
+                viewModel.trackCoordinates.send(location.coordinate)
+                routePath?.add(location.coordinate)
+                // Обновляем путь у линии маршрута путём повторного присвоения
+                route?.path = routePath
+            case .cuttentLocation:
+                addMarker(position: location.coordinate)
+            default:
+                ()
+            }
+            print("\(store.state.value)\nposition: ", location.coordinate)
 
             mapView.animate(toLocation: location.coordinate)
         }

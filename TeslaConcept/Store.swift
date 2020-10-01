@@ -13,6 +13,7 @@ enum GoogleMapsViewState {
     case none
     case tracking
     case history
+    case cuttentLocation
 }
 
 

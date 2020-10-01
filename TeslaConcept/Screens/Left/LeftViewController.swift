@@ -167,6 +167,7 @@ final class LeftViewController: UIViewController {
             store.state.send(.tracking)
             viewModel.didTapTrackLocation.send()
         case currentLocationButton:
+            store.state.send(.cuttentLocation)
             viewModel.didTapCurrentLocation.send()
         case startTrackButton:
             startBackgroundTrack()
