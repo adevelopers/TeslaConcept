@@ -55,7 +55,7 @@ class MapViewModel {
         let tracks = realm.objects(Track.self)
         print("tracks count:", tracks.count)
         tracks.forEach {
-            print("track ", $0.id)
+            print("\ntrack ", $0.id)
             print("track points: ", $0.points.count)
             print("track coordinates: \n", $0.points
                     .map { "\t\($0.latitude), \($0.longitude)" }
@@ -135,5 +135,16 @@ class MapViewModel {
         }
         route.path = routePath
         return TrackDTO(polyline: route, lastCoordinate: track.points.last!.coordinate)
+    }
+}
+
+
+extension GMSMutablePath {
+    var last: CLLocationCoordinate2D? {
+        if count() > 0 {
+            return coordinate(at: count() - 1)
+        } else {
+            return nil
+        }
     }
 }
