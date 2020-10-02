@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var store: Store = .init()
-
+    lazy var appCoordinator: Coordinator = {
+        AppCoordinator(navigationController: UINavigationController())
+    }()
+    
+    
     override init() {
         super.init()
         setupRealm()
@@ -27,35 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyCNV4DOMwlSfGN6JLRwHQi4PyxdytswIbY")
         
-        window = UIWindow()
-        
         assembly()
         return true
     }
 
 
     func assembly() {
-        let splitController = SplitViewController()
-        splitController.viewControllers = [
-            LeftViewController(viewModel: LeftViewModel.init(didTapTrack: store.didTapTrackLocation,
-                                                             didTapCurrent: store.didTapCurrentLocation,
-                                                             didTapStartTrack: store.didTapStartTrack,
-                                                             didTapStopTrack: store.didTapStopTrack,
-                                                             didTapPreviousTrack: store.didTapPreviousTrack,
-                                                             speed: store.speed
-                                                             )),
-            GoogleMapsViewController(viewModel: MapViewModel(didTapTrack: store.didTapTrackLocation,
-                                                             didTapCurrent: store.didTapCurrentLocation,
-                                                             didTapStartTrack: store.didTapStartTrack,
-                                                             didTapStopTrack: store.didTapStopTrack,
-                                                             didTapPreviousTrack: store.didTapPreviousTrack,
-                                                             speed: store.speed
-                                                             ))
-        ]
-        
-        window?.rootViewController = splitController
+        window = UIWindow()
         window?.makeKeyAndVisible()
         
+        appCoordinator.start()
     }
     
     private func setupRealm() {

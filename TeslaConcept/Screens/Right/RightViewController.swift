@@ -13,7 +13,7 @@ import CoreLocation
 import Combine
 
 
-final class GoogleMapsViewController: UIViewController {
+final class RightViewController: UIViewController {
     
     var viewModel: MapViewModel
     
@@ -169,14 +169,14 @@ final class GoogleMapsViewController: UIViewController {
     }
 }
 
-extension GoogleMapsViewController: GMSMapViewDelegate {
+extension RightViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("📍 ", coordinate)
     }
     
 }
 
-extension GoogleMapsViewController: CLLocationManagerDelegate {
+extension RightViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {
