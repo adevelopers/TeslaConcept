@@ -12,11 +12,11 @@ import UIKit
 class SplitViewController: UISplitViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .landscapeLeft
+        return .landscapeRight
     }
     
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .landscapeLeft
+        return .landscapeRight
     }
     
 }

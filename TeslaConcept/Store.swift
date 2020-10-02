@@ -9,8 +9,23 @@
 import Foundation
 import Combine
 
+enum GoogleMapsViewState {
+    case none
+    case tracking
+    case history
+    case cuttentLocation
+}
+
 
 class Store {
+    
+    static let shared = Store()
+    
     let didTapTrackLocation: PassthroughSubject<Void, Never> = .init()
     let didTapCurrentLocation: PassthroughSubject<Void, Never> = .init()
+    let didTapStartTrack: PassthroughSubject<Void, Never> = .init()
+    let didTapStopTrack: PassthroughSubject<Void, Never> = .init()
+    let didTapPreviousTrack: PassthroughSubject<Void, Never> = .init()
+    let speed: CurrentValueSubject<Double, Never> = .init(0)
+    let state: CurrentValueSubject<GoogleMapsViewState, Never> = .init(.none)
 }
