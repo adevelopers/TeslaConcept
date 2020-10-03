@@ -11,12 +11,11 @@ import RealmSwift
 
 class User: Object {
     
-    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var login = ""
     @objc dynamic var password = ""
     @objc dynamic var lastLoggedDate = Date()
     
     override static func primaryKey() -> String? {
-          return "id"
+          return "login"
     }
 }
