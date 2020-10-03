@@ -19,7 +19,6 @@
 		FA6238002524817400CCBF8C /* AppColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6237FF2524817400CCBF8C /* AppColors.xcassets */; };
 		FA62381025248B6800CCBF8C /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62380F25248B6800CCBF8C /* Track.swift */; };
 		FA62381D2524992500CCBF8C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62381C2524992500CCBF8C /* Location.swift */; };
-		FA6238212524997400CCBF8C /* TracksRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6238202524997400CCBF8C /* TracksRepository.swift */; };
 		FA62382425249B2D00CCBF8C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62382325249B2D00CCBF8C /* MapViewModel.swift */; };
 		FA62383B25273E2000CCBF8C /* MusicTracksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62383A25273E2000CCBF8C /* MusicTracksViewModel.swift */; };
 		FA62383F25273E5200CCBF8C /* MusicTracksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62383E25273E5200CCBF8C /* MusicTracksViewController.swift */; };
@@ -62,7 +61,6 @@
 		FA6237FF2524817400CCBF8C /* AppColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppColors.xcassets; sourceTree = "<group>"; };
 		FA62380F25248B6800CCBF8C /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		FA62381C2524992500CCBF8C /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		FA6238202524997400CCBF8C /* TracksRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksRepository.swift; sourceTree = "<group>"; };
 		FA62382325249B2D00CCBF8C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		FA62383A25273E2000CCBF8C /* MusicTracksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTracksViewModel.swift; sourceTree = "<group>"; };
 		FA62383E25273E5200CCBF8C /* MusicTracksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTracksViewController.swift; sourceTree = "<group>"; };
@@ -175,14 +173,6 @@
 			path = RealmModels;
 			sourceTree = "<group>";
 		};
-		FA62381F2524995800CCBF8C /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				FA6238202524997400CCBF8C /* TracksRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
 		FA62383925273DA800CCBF8C /* MusicTracks */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,7 +263,6 @@
 				FA6238492527429E00CCBF8C /* DIContainer.swift */,
 				FA6238452527405700CCBF8C /* Common */,
 				FA62380D25248B1400CCBF8C /* RealmModels */,
-				FA62381F2524995800CCBF8C /* Repository */,
 				F121CFCC251F930C003143D7 /* Screens */,
 				FA88C884251A6C2B002C9A7F /* Assets.xcassets */,
 				FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */,
@@ -438,7 +427,6 @@
 				FA6238762528974100CCBF8C /* User.swift in Sources */,
 				FA62388125289A6100CCBF8C /* LoginViewModel.swift in Sources */,
 				FA62384E252744B200CCBF8C /* RightCoordinator.swift in Sources */,
-				FA6238212524997400CCBF8C /* TracksRepository.swift in Sources */,
 				F121CFDF251FE694003143D7 /* Store.swift in Sources */,
 				FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */,
 				F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */,

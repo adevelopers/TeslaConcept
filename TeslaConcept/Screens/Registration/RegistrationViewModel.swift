@@ -36,15 +36,25 @@ class RegistrationViewModel {
             .map { ($0.0!, $0.1!) }
             .filter({ $0.0.count > 2 && $0.1.count >= 5 })
             .map(saveToDB)
-            .sink(receiveValue: {
-                print("registration success")
-                self.flow?.mainFlow()
-            })
+            .sink(receiveValue: authorizeUser)
             .store(in: &cancellables)
     }
     
     private func saveToDB(login: String, password: String) {
-        print("save to db")
+        if
+            let user = realm.objects(User.self)
+            .filter(NSPredicate(format: "login = %@ ", login.lowercased()))
+            .first
+        {
+            try? realm.write {
+                user.password = password
+            }
+        } else {
+            addNewUser(login: login, password: password)
+        }
+    }
+    
+    private func addNewUser(login: String, password: String) {
         let user = User()
         user.login = login.lowercased()
         user.password = password
@@ -56,6 +66,10 @@ class RegistrationViewModel {
         } catch {
             print("\(error)")
         }
-        
+    }
+    
+    private func authorizeUser() {
+        print("registration success")
+        self.flow?.mainFlow()
     }
 }
