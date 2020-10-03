@@ -13,17 +13,26 @@ import CoreLocation
 import Combine
 
 
-final class GoogleMapsViewController: UIViewController {
+final class RightViewController: UIViewController {
     
-    var viewModel: MapViewModel
+    private(set) var viewModel: MapViewModel
     
     private var store: Store = {
         return Store.shared
     }()
     
     // track
-    var route: GMSPolyline?
-    var routePath: GMSMutablePath?
+    private var route: GMSPolyline?
+    private var routePath: GMSMutablePath?
+    //
+    
+    private lazy var musicTracksButton: UIButton = {
+        let button = PrimaryButton()
+        button.backgroundColor = UIColor(named: "backgroundPanel")
+        button.setTitle("Music tracks", for: .normal)
+        button.addTarget(self, action: #selector(didTapMusicTracks), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var mapView: GMSMapView = {
         let view = GMSMapView()
@@ -40,14 +49,13 @@ final class GoogleMapsViewController: UIViewController {
         UILabel()
     }()
     
-    
     private var locationManager: CLLocationManager?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
@@ -74,6 +82,7 @@ final class GoogleMapsViewController: UIViewController {
             .add(to: view)
             .center()
         
+        
         mapView.add(to: view)
             .pinToEdges(withInsets: .init(top: 8, left: 8, bottom: 8, right: 8))
         
@@ -81,6 +90,13 @@ final class GoogleMapsViewController: UIViewController {
         mapView.setMinZoom(1, maxZoom: 50)
         mapView.camera = camera
         mapView.delegate = self
+        
+        musicTracksButton
+            .add(to: view)
+            .top(to: \.topAnchor, constant: 16)
+            .left(to: \.leftAnchor, constant: 16)
+            .height(48)
+            
     }
     
     private func setupSubscriptions() {
@@ -103,6 +119,12 @@ final class GoogleMapsViewController: UIViewController {
         viewModel.track
             .sink(receiveValue: handleTrack)
             .store(in: &cancellables)
+        
+    }
+    
+    @objc
+    private func didTapMusicTracks(sender: UIButton) {
+        viewModel.didTapMusicTracks.send()
     }
     
     private func handleTrack(_ dto: TrackDTO) {
@@ -169,14 +191,14 @@ final class GoogleMapsViewController: UIViewController {
     }
 }
 
-extension GoogleMapsViewController: GMSMapViewDelegate {
+extension RightViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("📍 ", coordinate)
     }
     
 }
 
-extension GoogleMapsViewController: CLLocationManagerDelegate {
+extension RightViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.first {

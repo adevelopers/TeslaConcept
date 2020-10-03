@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "roadicon2.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
