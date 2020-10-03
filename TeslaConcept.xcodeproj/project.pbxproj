@@ -35,6 +35,11 @@
 		FA62386F2528812300CCBF8C /* Right.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA62386E2528812300CCBF8C /* Right.xcassets */; };
 		FA6238722528824E00CCBF8C /* Player.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6238712528824E00CCBF8C /* Player.xcassets */; };
 		FA6238762528974100CCBF8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6238752528974100CCBF8C /* User.swift */; };
+		FA62387A25289A1300CCBF8C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62387925289A1300CCBF8C /* LoginViewController.swift */; };
+		FA62387E25289A4900CCBF8C /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62387D25289A4900CCBF8C /* LoginCoordinator.swift */; };
+		FA62388125289A6100CCBF8C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62388025289A6100CCBF8C /* LoginViewModel.swift */; };
+		FA62388425289AEE00CCBF8C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62388325289AEE00CCBF8C /* Colors.swift */; };
+		FA62389025289D2800CCBF8C /* UserDefaults+auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62388F25289D2800CCBF8C /* UserDefaults+auth.swift */; };
 		FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87B251A6C28002C9A7F /* AppDelegate.swift */; };
 		FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA88C884251A6C2B002C9A7F /* Assets.xcassets */; };
 		FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */; };
@@ -70,6 +75,11 @@
 		FA62386E2528812300CCBF8C /* Right.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Right.xcassets; sourceTree = "<group>"; };
 		FA6238712528824E00CCBF8C /* Player.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Player.xcassets; sourceTree = "<group>"; };
 		FA6238752528974100CCBF8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA62387925289A1300CCBF8C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA62387D25289A4900CCBF8C /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		FA62388025289A6100CCBF8C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FA62388325289AEE00CCBF8C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FA62388F25289D2800CCBF8C /* UserDefaults+auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+auth.swift"; sourceTree = "<group>"; };
 		FA88C878251A6C28002C9A7F /* TeslaConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslaConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA88C87B251A6C28002C9A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA88C884251A6C2B002C9A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -110,6 +120,7 @@
 		F121CFCC251F930C003143D7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				FA623878252899C400CCBF8C /* Login */,
 				FA6238502527709000CCBF8C /* Main */,
 				FA6237FF2524817400CCBF8C /* AppColors.xcassets */,
 			);
@@ -182,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				FA62384225273F6900CCBF8C /* Coordinator.swift */,
+				FA62388325289AEE00CCBF8C /* Colors.swift */,
+				FA62388F25289D2800CCBF8C /* UserDefaults+auth.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -204,6 +217,16 @@
 				FA62386225286BC000CCBF8C /* MusicTrackCell.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		FA623878252899C400CCBF8C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA62387925289A1300CCBF8C /* LoginViewController.swift */,
+				FA62387D25289A4900CCBF8C /* LoginCoordinator.swift */,
+				FA62388025289A6100CCBF8C /* LoginViewModel.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		FA88C86F251A6C28002C9A7F = {
@@ -382,16 +405,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA62381D2524992500CCBF8C /* Location.swift in Sources */,
+				FA62389025289D2800CCBF8C /* UserDefaults+auth.swift in Sources */,
 				FA62381025248B6800CCBF8C /* Track.swift in Sources */,
 				FA62383B25273E2000CCBF8C /* MusicTracksViewModel.swift in Sources */,
+				FA62387A25289A1300CCBF8C /* LoginViewController.swift in Sources */,
 				FA623856252779BD00CCBF8C /* MusicTracksCoordinator.swift in Sources */,
 				FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */,
+				FA62387E25289A4900CCBF8C /* LoginCoordinator.swift in Sources */,
 				FA62382425249B2D00CCBF8C /* MapViewModel.swift in Sources */,
 				FA4B881C251D458B005ECE5F /* RightViewController.swift in Sources */,
 				FA62384325273F6900CCBF8C /* Coordinator.swift in Sources */,
 				FA62386325286BC000CCBF8C /* MusicTrackCell.swift in Sources */,
 				FA623852252770D400CCBF8C /* MainCoordinator.swift in Sources */,
 				FA6238762528974100CCBF8C /* User.swift in Sources */,
+				FA62388125289A6100CCBF8C /* LoginViewModel.swift in Sources */,
 				FA62384E252744B200CCBF8C /* RightCoordinator.swift in Sources */,
 				FA6238212524997400CCBF8C /* TracksRepository.swift in Sources */,
 				F121CFDF251FE694003143D7 /* Store.swift in Sources */,
@@ -399,6 +426,7 @@
 				F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */,
 				FA6237FC2524801600CCBF8C /* PrimaryButton.swift in Sources */,
 				FA62384A2527429E00CCBF8C /* DIContainer.swift in Sources */,
+				FA62388425289AEE00CCBF8C /* Colors.swift in Sources */,
 				FA62385B2528656500CCBF8C /* RowLayout.swift in Sources */,
 				FA6238472527408D00CCBF8C /* AppCoordinator.swift in Sources */,
 				FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */,

@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Combine
+
 
 enum AppCoordinators {
+    case login
     case main
 }
 
@@ -17,25 +20,39 @@ class AppCoordinator: NavigationCoordinator {
     
     var childCoordinators: [AppCoordinators: Coordinator] = [:]
     
+    private var cancelables: [AnyCancellable] = []
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     
-        
+        childCoordinators[.login] = LoginCoordinator(navigationController: navigationController)
         childCoordinators[.main] = MainCoordintor(navigationController: navigationController)
+        setupSubscriptions()
     }
     
-
+    
+    private func setupSubscriptions() {
+        Store.shared.didTapLogout
+            .sink(receiveValue: loginFlow)
+            .store(in: &cancelables)
+            
+    }
     
     func start() {
-        // если не авторизаованы то Login Flow
-        // иначе mainFlow
-        mainFlow()
+        if UserDefaults.standard.authorized {
+            mainFlow()
+        } else {
+            loginFlow()
+        }
     }
     
     private func mainFlow() {
         childCoordinators[.main]?.start()
     }
     
+    private func loginFlow() {
+        childCoordinators[.login]?.start()
+    }
 }
 
 
