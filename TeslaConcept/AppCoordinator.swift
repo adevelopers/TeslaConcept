@@ -8,13 +8,23 @@
 
 import UIKit
 
+enum AppCoordinators {
+    case main
+}
 
 class AppCoordinator: NavigationCoordinator {
     var navigationController: UINavigationController
     
+    var childCoordinators: [AppCoordinators: Coordinator] = [:]
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    
+        
+        childCoordinators[.main] = MainCoordintor(navigationController: navigationController)
     }
+    
+
     
     func start() {
         // если не авторизаованы то Login Flow
@@ -23,34 +33,9 @@ class AppCoordinator: NavigationCoordinator {
     }
     
     private func mainFlow() {
-        let store = Store.shared
-        let splitController = SplitViewController()
-        splitController.viewControllers = [
-            LeftViewController(viewModel: LeftViewModel.init(didTapTrack: store.didTapTrackLocation,
-                                                             didTapCurrent: store.didTapCurrentLocation,
-                                                             didTapStartTrack: store.didTapStartTrack,
-                                                             didTapStopTrack: store.didTapStopTrack,
-                                                             didTapPreviousTrack: store.didTapPreviousTrack,
-                                                             speed: store.speed
-                                                             )),
-            RightViewController(viewModel: MapViewModel(didTapTrack: store.didTapTrackLocation,
-                                                             didTapCurrent: store.didTapCurrentLocation,
-                                                             didTapStartTrack: store.didTapStartTrack,
-                                                             didTapStopTrack: store.didTapStopTrack,
-                                                             didTapPreviousTrack: store.didTapPreviousTrack,
-                                                             speed: store.speed
-                                                             ))
-        ]
-        
-        
-        setAsRoot(splitController)
-        
+        childCoordinators[.main]?.start()
     }
     
-    
-    private func setAsRoot(_ controller: UIViewController) {
-        UIApplication.shared.windows.first?.rootViewController = controller
-    }
 }
 
 

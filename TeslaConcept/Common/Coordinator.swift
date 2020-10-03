@@ -8,10 +8,21 @@
 
 import UIKit
 
-protocol Coordinator {
+protocol Coordinator: class {
     func start()
 }
 
 protocol NavigationCoordinator: Coordinator {
     var navigationController: UINavigationController { get }
+}
+
+
+protocol FlowCoordinator: NavigationCoordinator {}
+
+
+extension FlowCoordinator {
+    
+    func setAsRoot(_ controller: UIViewController) {
+        UIApplication.shared.windows.first?.rootViewController = controller
+    }
 }

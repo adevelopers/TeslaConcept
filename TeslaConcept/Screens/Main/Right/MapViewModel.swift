@@ -27,11 +27,15 @@ class MapViewModel {
     let didTapStartTrack: PassthroughSubject<Void, Never>
     let didTapStopTrack: PassthroughSubject<Void, Never>
     let didTapPreviousTrack: PassthroughSubject<Void, Never>
-    
+    let didTapMusicTracks: PassthroughSubject<Void, Never> = .init()
     let speed: CurrentValueSubject<Double, Never>
+    
+    
     
     let trackCoordinates: PassthroughSubject<CLLocationCoordinate2D, Never> = .init()
     let track: PassthroughSubject<TrackDTO, Never> = .init()
+    
+    var flow: RightFlow?
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -65,8 +69,6 @@ class MapViewModel {
         }
     }
     
-    
-    
     private func setupSubscriptions() {
         // подписываемся на получение новых координат
         trackCoordinates
@@ -79,6 +81,10 @@ class MapViewModel {
         
         didTapPreviousTrack
             .sink(receiveValue: loadTrack)
+            .store(in: &cancellables)
+        
+        didTapMusicTracks
+            .sink(receiveValue: didTapOnMusicTracks)
             .store(in: &cancellables)
     }
     
@@ -135,6 +141,11 @@ class MapViewModel {
         }
         route.path = routePath
         return TrackDTO(polyline: route, lastCoordinate: track.points.last!.coordinate)
+    }
+    
+    private func didTapOnMusicTracks() {
+        print("tap music tracks")
+        flow?.showMusicTracks()
     }
 }
 

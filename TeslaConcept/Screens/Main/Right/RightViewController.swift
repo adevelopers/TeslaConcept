@@ -15,15 +15,24 @@ import Combine
 
 final class RightViewController: UIViewController {
     
-    var viewModel: MapViewModel
+    private(set) var viewModel: MapViewModel
     
     private var store: Store = {
         return Store.shared
     }()
     
     // track
-    var route: GMSPolyline?
-    var routePath: GMSMutablePath?
+    private var route: GMSPolyline?
+    private var routePath: GMSMutablePath?
+    //
+    
+    private lazy var musicTracksButton: UIButton = {
+        let button = PrimaryButton()
+        button.backgroundColor = UIColor(named: "backgroundPanel")
+        button.setTitle("Music tracks", for: .normal)
+        button.addTarget(self, action: #selector(didTapMusicTracks), for: .touchUpInside)
+        return button
+    }()
     
     private lazy var mapView: GMSMapView = {
         let view = GMSMapView()
@@ -40,14 +49,13 @@ final class RightViewController: UIViewController {
         UILabel()
     }()
     
-    
     private var locationManager: CLLocationManager?
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
     
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
@@ -74,6 +82,7 @@ final class RightViewController: UIViewController {
             .add(to: view)
             .center()
         
+        
         mapView.add(to: view)
             .pinToEdges(withInsets: .init(top: 8, left: 8, bottom: 8, right: 8))
         
@@ -81,6 +90,13 @@ final class RightViewController: UIViewController {
         mapView.setMinZoom(1, maxZoom: 50)
         mapView.camera = camera
         mapView.delegate = self
+        
+        musicTracksButton
+            .add(to: view)
+            .top(to: \.topAnchor, constant: 16)
+            .left(to: \.leftAnchor, constant: 16)
+            .height(48)
+            
     }
     
     private func setupSubscriptions() {
@@ -103,6 +119,12 @@ final class RightViewController: UIViewController {
         viewModel.track
             .sink(receiveValue: handleTrack)
             .store(in: &cancellables)
+        
+    }
+    
+    @objc
+    private func didTapMusicTracks(sender: UIButton) {
+        viewModel.didTapMusicTracks.send()
     }
     
     private func handleTrack(_ dto: TrackDTO) {

@@ -26,6 +26,14 @@
 		FA62384325273F6900CCBF8C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62384225273F6900CCBF8C /* Coordinator.swift */; };
 		FA6238472527408D00CCBF8C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6238462527408D00CCBF8C /* AppCoordinator.swift */; };
 		FA62384A2527429E00CCBF8C /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6238492527429E00CCBF8C /* DIContainer.swift */; };
+		FA62384E252744B200CCBF8C /* RightCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62384D252744B200CCBF8C /* RightCoordinator.swift */; };
+		FA623852252770D400CCBF8C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA623851252770D400CCBF8C /* MainCoordinator.swift */; };
+		FA623856252779BD00CCBF8C /* MusicTracksCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA623855252779BD00CCBF8C /* MusicTracksCoordinator.swift */; };
+		FA62385B2528656500CCBF8C /* RowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62385A2528656500CCBF8C /* RowLayout.swift */; };
+		FA62385F25286B5D00CCBF8C /* MusicTracks.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA62385E25286B5D00CCBF8C /* MusicTracks.xcassets */; };
+		FA62386325286BC000CCBF8C /* MusicTrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA62386225286BC000CCBF8C /* MusicTrackCell.swift */; };
+		FA62386F2528812300CCBF8C /* Right.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA62386E2528812300CCBF8C /* Right.xcassets */; };
+		FA6238722528824E00CCBF8C /* Player.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA6238712528824E00CCBF8C /* Player.xcassets */; };
 		FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA88C87B251A6C28002C9A7F /* AppDelegate.swift */; };
 		FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA88C884251A6C2B002C9A7F /* Assets.xcassets */; };
 		FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA88C886251A6C2B002C9A7F /* LaunchScreen.storyboard */; };
@@ -52,6 +60,14 @@
 		FA62384225273F6900CCBF8C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		FA6238462527408D00CCBF8C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		FA6238492527429E00CCBF8C /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		FA62384D252744B200CCBF8C /* RightCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightCoordinator.swift; sourceTree = "<group>"; };
+		FA623851252770D400CCBF8C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		FA623855252779BD00CCBF8C /* MusicTracksCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTracksCoordinator.swift; sourceTree = "<group>"; };
+		FA62385A2528656500CCBF8C /* RowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowLayout.swift; sourceTree = "<group>"; };
+		FA62385E25286B5D00CCBF8C /* MusicTracks.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = MusicTracks.xcassets; sourceTree = "<group>"; };
+		FA62386225286BC000CCBF8C /* MusicTrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTrackCell.swift; sourceTree = "<group>"; };
+		FA62386E2528812300CCBF8C /* Right.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Right.xcassets; sourceTree = "<group>"; };
+		FA6238712528824E00CCBF8C /* Player.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Player.xcassets; sourceTree = "<group>"; };
 		FA88C878251A6C28002C9A7F /* TeslaConcept.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslaConcept.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA88C87B251A6C28002C9A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA88C884251A6C2B002C9A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,10 +108,7 @@
 		F121CFCC251F930C003143D7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				FA4B8815251D10B7005ECE5F /* SplitViewController.swift */,
-				F121CFD8251FBA11003143D7 /* Left */,
-				F121CFD9251FBA20003143D7 /* Right */,
-				FA62383925273DA800CCBF8C /* MusicTracks */,
+				FA6238502527709000CCBF8C /* Main */,
 				FA6237FF2524817400CCBF8C /* AppColors.xcassets */,
 			);
 			path = Screens;
@@ -115,8 +128,11 @@
 		F121CFD9251FBA20003143D7 /* Right */ = {
 			isa = PBXGroup;
 			children = (
+				FA62383925273DA800CCBF8C /* MusicTracks */,
 				FA4B881B251D458B005ECE5F /* RightViewController.swift */,
 				FA62382325249B2D00CCBF8C /* MapViewModel.swift */,
+				FA62384D252744B200CCBF8C /* RightCoordinator.swift */,
+				FA62386E2528812300CCBF8C /* Right.xcassets */,
 			);
 			path = Right;
 			sourceTree = "<group>";
@@ -149,8 +165,12 @@
 		FA62383925273DA800CCBF8C /* MusicTracks */ = {
 			isa = PBXGroup;
 			children = (
+				FA6238592528655800CCBF8C /* CollectionView */,
 				FA62383A25273E2000CCBF8C /* MusicTracksViewModel.swift */,
 				FA62383E25273E5200CCBF8C /* MusicTracksViewController.swift */,
+				FA623855252779BD00CCBF8C /* MusicTracksCoordinator.swift */,
+				FA62385E25286B5D00CCBF8C /* MusicTracks.xcassets */,
+				FA6238712528824E00CCBF8C /* Player.xcassets */,
 			);
 			path = MusicTracks;
 			sourceTree = "<group>";
@@ -161,6 +181,26 @@
 				FA62384225273F6900CCBF8C /* Coordinator.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		FA6238502527709000CCBF8C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FA4B8815251D10B7005ECE5F /* SplitViewController.swift */,
+				F121CFD8251FBA11003143D7 /* Left */,
+				F121CFD9251FBA20003143D7 /* Right */,
+				FA623851252770D400CCBF8C /* MainCoordinator.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FA6238592528655800CCBF8C /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FA62385A2528656500CCBF8C /* RowLayout.swift */,
+				FA62386225286BC000CCBF8C /* MusicTrackCell.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		FA88C86F251A6C28002C9A7F = {
@@ -261,9 +301,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6238722528824E00CCBF8C /* Player.xcassets in Resources */,
 				F121CFD3251F9AEC003143D7 /* mapStyleConfig.json in Resources */,
 				FA6238002524817400CCBF8C /* AppColors.xcassets in Resources */,
 				FA88C888251A6C2B002C9A7F /* LaunchScreen.storyboard in Resources */,
+				FA62385F25286B5D00CCBF8C /* MusicTracks.xcassets in Resources */,
+				FA62386F2528812300CCBF8C /* Right.xcassets in Resources */,
 				FA4B881A251D1A96005ECE5F /* Left.xcassets in Resources */,
 				FA88C885251A6C2B002C9A7F /* Assets.xcassets in Resources */,
 			);
@@ -338,16 +381,21 @@
 				FA62381D2524992500CCBF8C /* Location.swift in Sources */,
 				FA62381025248B6800CCBF8C /* Track.swift in Sources */,
 				FA62383B25273E2000CCBF8C /* MusicTracksViewModel.swift in Sources */,
+				FA623856252779BD00CCBF8C /* MusicTracksCoordinator.swift in Sources */,
 				FA88C87C251A6C28002C9A7F /* AppDelegate.swift in Sources */,
 				FA62382425249B2D00CCBF8C /* MapViewModel.swift in Sources */,
 				FA4B881C251D458B005ECE5F /* RightViewController.swift in Sources */,
 				FA62384325273F6900CCBF8C /* Coordinator.swift in Sources */,
+				FA62386325286BC000CCBF8C /* MusicTrackCell.swift in Sources */,
+				FA623852252770D400CCBF8C /* MainCoordinator.swift in Sources */,
+				FA62384E252744B200CCBF8C /* RightCoordinator.swift in Sources */,
 				FA6238212524997400CCBF8C /* TracksRepository.swift in Sources */,
 				F121CFDF251FE694003143D7 /* Store.swift in Sources */,
 				FA4B8818251D130B005ECE5F /* LeftViewController.swift in Sources */,
 				F121CFDB251FBAFF003143D7 /* LeftViewModel.swift in Sources */,
 				FA6237FC2524801600CCBF8C /* PrimaryButton.swift in Sources */,
 				FA62384A2527429E00CCBF8C /* DIContainer.swift in Sources */,
+				FA62385B2528656500CCBF8C /* RowLayout.swift in Sources */,
 				FA6238472527408D00CCBF8C /* AppCoordinator.swift in Sources */,
 				FA4B8816251D10B7005ECE5F /* SplitViewController.swift in Sources */,
 				FA62383F25273E5200CCBF8C /* MusicTracksViewController.swift in Sources */,
