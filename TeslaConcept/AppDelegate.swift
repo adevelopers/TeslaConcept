@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyCNV4DOMwlSfGN6JLRwHQi4PyxdytswIbY")
         UserDefaults.standard.authorized = false
+        setupNavBarApearance()
         assembly()
         return true
     }
@@ -41,6 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         appCoordinator.start()
+    }
+    
+    private func setupNavBarApearance() {
+        let apearance = UINavigationBar.appearance()
+        apearance.backgroundColor = .black
+        apearance.tintColor = .white
+        apearance.barTintColor = .black
     }
     
     private func setupRealm() {

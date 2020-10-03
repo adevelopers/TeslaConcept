@@ -59,6 +59,16 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
+    private lazy var registraionButton: PrimaryButton = {
+        let button = PrimaryButton()
+        button.layer.cornerRadius = 15
+        button.backgroundColor = .backgroundPanel
+        button.setTitle("Зарегистрироваться", for: .normal)
+        button.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+    
     private var viewModel: LoginViewModel
     private var cancellables: [AnyCancellable] = []
     
@@ -89,6 +99,17 @@ final class LoginViewController: UIViewController {
         
         setupUI()
         setupSubscriptions()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     private func setupUI() {
@@ -104,27 +125,34 @@ final class LoginViewController: UIViewController {
             .add(to: view)
             .centerX(to: \.centerXAnchor)
             .top(to: \.bottomAnchor, of: titleLabel, constant: 48)
-            .width(200)
+            .width(300)
             .height(48)
         
         passwordField
             .add(to: view)
             .centerX(to: \.centerXAnchor)
             .top(to: \.bottomAnchor, of: loginField, constant: 16)
-            .width(200)
+            .width(300)
             .height(48)
         
         errorLabel
             .add(to: view)
             .top(to: \.bottomAnchor, of: passwordField, constant: 4)
             .centerX(to: \.centerXAnchor)
-            .width(200)
+            .width(300)
         
         loginButton
             .add(to: view)
             .top(to: \.bottomAnchor, of: errorLabel, constant: 16)
             .centerX(to: \.centerXAnchor)
-            .width(200)
+            .width(300)
+            .height(48)
+        
+        registraionButton
+            .add(to: view)
+            .top(to: \.bottomAnchor, of: loginButton, constant: 48)
+            .centerX(to: \.centerXAnchor)
+            .width(300)
             .height(48)
         
         passwordField
@@ -136,9 +164,6 @@ final class LoginViewController: UIViewController {
             .addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         loginField
             .addTarget(self, action: #selector(beginEditing), for: .editingDidBegin)
-        
-        
-
     }
     
     
@@ -172,11 +197,14 @@ final class LoginViewController: UIViewController {
     
     @objc
     private func didTap(_ button: UIButton) {
+        
         switch button {
         case loginButton:
             viewModel.login.send(loginField.text?.lowercased())
             viewModel.password.send(passwordField.text)
             viewModel.didTapSignIn.send()
+        case registraionButton:
+            viewModel.didTapRegistration.send()
         default:
             ()
         }

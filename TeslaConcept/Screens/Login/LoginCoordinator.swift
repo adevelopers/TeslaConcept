@@ -11,25 +11,34 @@ import UIKit
 
 protocol LoginFlow {
     func mainFlow()
+    func registrationFlow()
 }
 
+enum LoginChildCoordinators {
+    case main
+    case registration
+}
 
 class LoginCoordinator: NavigationCoordinator {
     
     var navigationController: UINavigationController
     
-    private var childCoordinator: MainCoordintor
+    private var childCoordinators: [LoginChildCoordinators: Coordinator] = [:]
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.childCoordinator = MainCoordintor(navigationController: navigationController)
+        
+        childCoordinators[.main] = MainCoordintor(navigationController: navigationController)
+        childCoordinators[.registration] = RegistrationCoordinator(navigationController: navigationController)
     }
     
     func start() {
         let viewModel = LoginViewModel()
         let controller = LoginViewController(viewModel: viewModel)
         viewModel.flow = self
-        setAsRoot(controller)
+        navigationController.viewControllers = [controller]
+        
+        setAsRoot(navigationController)
     }
     
 }
@@ -37,7 +46,11 @@ class LoginCoordinator: NavigationCoordinator {
 extension LoginCoordinator: LoginFlow {
     
     func mainFlow() {
-        childCoordinator.start()
+        childCoordinators[.main]?.start()
+    }
+    
+    func registrationFlow() {
+        childCoordinators[.registration]?.start()
     }
     
 }

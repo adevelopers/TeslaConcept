@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import RealmSwift
 
 
 class LoginViewModel {
@@ -18,7 +19,9 @@ class LoginViewModel {
     let password: CurrentValueSubject<String?, Never> = .init(nil)
     let loginError: CurrentValueSubject<String?, Never> = .init(nil)
     let didTapSignIn: PassthroughSubject<Void, Never> = .init()
+    let didTapRegistration: PassthroughSubject<Void, Never> = .init()
     
+    private var realm: Realm = { try! Realm() }()
     private var cancellables: [AnyCancellable] = []
     
     init() {
@@ -31,7 +34,10 @@ class LoginViewModel {
             .map { ($0.1, $0.2) }
             .sink(receiveValue: fieldsValidation)
             .store(in: &cancellables)
-            
+        
+        didTapRegistration
+            .sink(receiveValue: runRegistrationFlow)
+            .store(in: &cancellables)
     }
     
     private func md5(_ password: String?) -> String {
@@ -71,12 +77,14 @@ class LoginViewModel {
             loginError.send(nil)
         }
         
+        
         if
             loginError.value == nil,
-            login == "admin",
-            password == "12345"
+            let user = realm.objects(User.self)
+                .filter(NSPredicate(format: "login = %@ and password = %@", login, password))
+                .first
         {
-//            loginError.send(nil)
+            print("✅ Вы авторизованы как \(user.login)")
             UserDefaults.standard.authorized = true
             flow?.mainFlow()
         } else {
@@ -85,4 +93,7 @@ class LoginViewModel {
         
     }
     
+    private func runRegistrationFlow() {
+        flow?.registrationFlow()
+    }
 }
