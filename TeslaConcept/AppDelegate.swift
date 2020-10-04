@@ -15,6 +15,7 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var bluredView = UIVisualEffectView()
     
     var store: Store = .init()
     lazy var appCoordinator: Coordinator = {
@@ -49,6 +50,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         let realm = try! Realm()
         print("🧊 Realm path:", realm.configuration.fileURL?.absoluteString ?? "")
+    }
+    
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        guard let window = window else { return }
+        
+        if !bluredView.isDescendant(of: window) {
+            let blurEffect = UIBlurEffect(style: .dark)
+            bluredView = UIVisualEffectView(effect: blurEffect)
+            bluredView.frame = window.bounds
+            window.addSubview(bluredView)
+        }
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        bluredView.removeFromSuperview()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        bluredView.removeFromSuperview()
     }
 }
 
