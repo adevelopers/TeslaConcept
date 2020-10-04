@@ -16,11 +16,10 @@ protocol NavigationCoordinator: Coordinator {
     var navigationController: UINavigationController { get }
 }
 
-
 protocol FlowCoordinator: NavigationCoordinator {}
 
 
-extension FlowCoordinator {
+extension Coordinator {
     
     func setAsRoot(_ controller: UIViewController) {
         UIApplication.shared.windows.first?.rootViewController = controller
