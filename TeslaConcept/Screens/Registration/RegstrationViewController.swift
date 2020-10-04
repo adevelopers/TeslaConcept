@@ -37,6 +37,7 @@ final class RegistrationViewController: UIViewController {
         field.textColor = .white
         field.isSecureTextEntry = true
         field.layer.cornerRadius = 8
+        field.autocorrectionType = .no
         return field
     }()
     
