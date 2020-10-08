@@ -60,16 +60,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("🧊 Realm path:", realm.configuration.fileURL?.absoluteString ?? "")
     }
     
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        print("applicationDidEnterBackground")
-    }
-    
     func applicationWillResignActive(_ application: UIApplication) {
         guard let window = window else { return }
         
         if !bluredView.isDescendant(of: window) {
-            let blurEffect = UIBlurEffect(style: .systemChromeMaterial)
+            let blurEffect = UIBlurEffect(style: .dark)
+            bluredView.effect = blurEffect
             bluredView.frame = window.bounds
             window.addSubview(bluredView)
         }
