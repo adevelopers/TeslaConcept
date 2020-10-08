@@ -76,6 +76,14 @@ final class LeftViewController: UIViewController {
         return button
     }()
     
+    private lazy var logoutButton: PrimaryButton = {
+        let button = PrimaryButton()
+        button.setTitle("Выйти", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        return button
+    }()
+    
     private weak var sourceView: UIView?
     
     private lazy var buttonsStack: UIStackView = {
@@ -147,7 +155,11 @@ final class LeftViewController: UIViewController {
             .left(to: \.leftAnchor, constant: 16)
             .height(48)
         
-            
+        logoutButton
+            .add(to: view)
+            .bottom(to: \.bottomAnchor, of: view, relation: .equal, constant: 32, priority: .defaultHigh)
+            .centerX(to: \.centerXAnchor)
+            .height(48)
         
         imageView
             .add(to: view)
@@ -185,6 +197,8 @@ final class LeftViewController: UIViewController {
                 store.state.send(.history)
                 viewModel.didTapPreviousTrack.send()
             }
+        case logoutButton:
+            store.didTapLogout.send()
         default:
             ()
         }

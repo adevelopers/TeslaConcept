@@ -30,5 +30,7 @@ class LeftViewModel {
         self.didTapStopTrack = didTapStopTrack
         self.didTapPreviousTrack = didTapPreviousTrack
         self.speed = speed
+        
     }
+    
 }

@@ -26,6 +26,7 @@ class Store {
     let didTapStartTrack: PassthroughSubject<Void, Never> = .init()
     let didTapStopTrack: PassthroughSubject<Void, Never> = .init()
     let didTapPreviousTrack: PassthroughSubject<Void, Never> = .init()
+    let didTapLogout: PassthroughSubject<Void, Never> = .init()
     let speed: CurrentValueSubject<Double, Never> = .init(0)
     let state: CurrentValueSubject<GoogleMapsViewState, Never> = .init(.none)
 }
