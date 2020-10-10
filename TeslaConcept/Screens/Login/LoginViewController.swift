@@ -7,11 +7,15 @@
 //
 
 import UIKit
-import Combine
+import RxSwift
+import RxCocoa
+
 import VanillaConstraints
 
 
 final class LoginViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -56,7 +60,6 @@ final class LoginViewController: UIViewController {
         button.backgroundColor = .backgroundPanel
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         return button
     }()
     
@@ -66,12 +69,10 @@ final class LoginViewController: UIViewController {
         button.backgroundColor = .backgroundPanel
         button.setTitle("Зарегистрироваться", for: .normal)
         button.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
-        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         return button
     }()
     
     private var viewModel: LoginViewModel
-    private var cancellables: [AnyCancellable] = []
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeRight
@@ -156,59 +157,23 @@ final class LoginViewController: UIViewController {
             .width(300)
             .height(48)
         
-        passwordField
-            .addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        passwordField
-            .addTarget(self, action: #selector(beginEditing), for: .editingDidBegin)
-        
-        loginField
-            .addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        loginField
-            .addTarget(self, action: #selector(beginEditing), for: .editingDidBegin)
     }
     
     
     private func setupSubscriptions() {
-        viewModel.loginError
-            .assign(to: \.text, on: errorLabel)
-            .store(in: &cancellables)
-    }
-    
-    @objc
-    private func beginEditing(_ field: UITextField) {
-        viewModel.loginError.send(nil)
-    }
-    
-    @objc
-    private func editingChanged(_ field: UITextField) {
-        switch field {
-        case loginField:
-            viewModel.login.send(field.text)
-        case passwordField:
-            viewModel.password.send(field.text)
-        default:
-            ()
-        }
         
-    }
-    
-    @objc private func editingLoginChanged(_ field: UITextField) {
-        viewModel.password.send(field.text)
-    }
-    
-    @objc
-    private func didTap(_ button: UIButton) {
-        
-        switch button {
-        case loginButton:
-            viewModel.login.send(loginField.text?.lowercased())
-            viewModel.password.send(passwordField.text)
-            viewModel.didTapSignIn.send()
-        case registraionButton:
-            viewModel.didTapRegistration.send()
-        default:
-            ()
-        }
+        disposeBag.insert([
+            loginField.rx.text
+                .bind(to: viewModel.login),
+            passwordField.rx.text
+                .bind(to: viewModel.password),
+            viewModel.loginError
+                .bind(to: errorLabel.rx.text),
+            loginButton.rx.tap
+                .bind(to: viewModel.didTapSignIn),
+            registraionButton.rx.tap
+                .bind(to: viewModel.didTapRegistration)
+        ])
     }
     
 }

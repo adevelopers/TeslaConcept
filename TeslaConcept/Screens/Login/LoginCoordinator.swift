@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol LoginFlow {
+protocol LoginFlow: class {
     func mainFlow()
     func registrationFlow()
 }

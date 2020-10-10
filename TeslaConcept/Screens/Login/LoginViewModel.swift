@@ -7,37 +7,43 @@
 //
 
 import UIKit
-import Combine
 import RealmSwift
+
+import RxSwift
+import RxCocoa
 
 
 class LoginViewModel {
     
-    var flow: LoginFlow?
+    private let disposeBag = DisposeBag()
     
-    let login: CurrentValueSubject<String?, Never> = .init(nil)
-    let password: CurrentValueSubject<String?, Never> = .init(nil)
-    let loginError: CurrentValueSubject<String?, Never> = .init(nil)
-    let didTapSignIn: PassthroughSubject<Void, Never> = .init()
-    let didTapRegistration: PassthroughSubject<Void, Never> = .init()
+    weak var flow: LoginFlow?
+    
+    let login: BehaviorRelay<String?> = .init(value: nil)
+    let password: BehaviorRelay<String?> = .init(value: nil)
+    let loginError: BehaviorRelay<String?> = .init(value: nil)
+    
+    let didTapSignIn: PublishRelay<Void> = .init()
+    let didTapRegistration: PublishRelay<Void> = .init()
     
     private var realm: Realm = { try! Realm() }()
-    private var cancellables: [AnyCancellable] = []
+    
     
     init() {
         setupSubscriptions()
     }
     
     private func setupSubscriptions() {
+        
         didTapSignIn
-            .combineLatest(login, password)
-            .map { ($0.1, $0.2) }
-            .sink(receiveValue: fieldsValidation)
-            .store(in: &cancellables)
+            .withLatestFrom(Observable.combineLatest(login.compactMap({ $0 }), password.compactMap({ $0 })))
+            .subscribe(onNext: fieldsValidation)
+            .disposed(by: disposeBag)
         
         didTapRegistration
-            .sink(receiveValue: runRegistrationFlow)
-            .store(in: &cancellables)
+            .subscribe(onNext: runRegistrationFlow)
+            .disposed(by: disposeBag)
+        
     }
     
     private func md5(_ password: String?) -> String {
@@ -48,33 +54,33 @@ class LoginViewModel {
         print("login: \(login) password: \(password)")
         
         guard let login = login else {
-            loginError.send("Заполните поле логин")
+            loginError.accept("Заполните поле логин")
             return
         }
         
         if login.count < 3 {
-            loginError.send("Логин должен быть длинее 3-х символов")
+            loginError.accept("Логин должен быть длинее 3-х символов")
             return
         } else if login.count > 255 {
-            loginError.send("Пароль должен быть разумных размеров")
+            loginError.accept("Пароль должен быть разумных размеров")
             return
         } else {
-            loginError.send(nil)
+            loginError.accept(nil)
         }
         
         guard let password = password else {
-            loginError.send("Заполните поле пароль")
+            loginError.accept("Заполните поле пароль")
             return
         }
         
         if password.count < 5 {
-            loginError.send("Пароль должен быть длинее 4 символов")
+            loginError.accept("Пароль должен быть длинее 4 символов")
             return
         } else if password.count > 255 {
-            loginError.send("Пароль должен быть разумных размеров")
+            loginError.accept("Пароль должен быть разумных размеров")
             return
         } else {
-            loginError.send(nil)
+            loginError.accept(nil)
         }
         
         
@@ -88,7 +94,7 @@ class LoginViewModel {
             UserDefaults.standard.authorized = true
             flow?.mainFlow()
         } else {
-            loginError.send("Логин или пароль введены неверно")
+            loginError.accept("Логин или пароль введены неверно")
         }
         
     }
