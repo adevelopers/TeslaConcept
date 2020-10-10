@@ -54,12 +54,13 @@ final class LoginViewController: UIViewController {
         return label
     }()
     
-    private lazy var loginButton: PrimaryButton = {
+    private lazy var signInButton: PrimaryButton = {
         let button = PrimaryButton()
         button.layer.cornerRadius = 15
         button.backgroundColor = .backgroundPanel
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.darkGray, for: .disabled)
         return button
     }()
     
@@ -68,7 +69,7 @@ final class LoginViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.backgroundColor = .backgroundPanel
         button.setTitle("Зарегистрироваться", for: .normal)
-        button.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         return button
     }()
     
@@ -101,7 +102,6 @@ final class LoginViewController: UIViewController {
         
         setupUI()
         setupSubscriptions()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,7 +143,7 @@ final class LoginViewController: UIViewController {
             .centerX(to: \.centerXAnchor)
             .width(300)
         
-        loginButton
+        signInButton
             .add(to: view)
             .top(to: \.bottomAnchor, of: errorLabel, constant: 16)
             .centerX(to: \.centerXAnchor)
@@ -152,7 +152,7 @@ final class LoginViewController: UIViewController {
         
         registraionButton
             .add(to: view)
-            .top(to: \.bottomAnchor, of: loginButton, constant: 48)
+            .top(to: \.bottomAnchor, of: signInButton, constant: 48)
             .centerX(to: \.centerXAnchor)
             .width(300)
             .height(48)
@@ -169,7 +169,9 @@ final class LoginViewController: UIViewController {
                 .bind(to: viewModel.password),
             viewModel.loginError
                 .bind(to: errorLabel.rx.text),
-            loginButton.rx.tap
+            viewModel.signInEnabled
+                .bind(to: signInButton.rx.isEnabled),
+            signInButton.rx.tap
                 .bind(to: viewModel.didTapSignIn),
             registraionButton.rx.tap
                 .bind(to: viewModel.didTapRegistration)

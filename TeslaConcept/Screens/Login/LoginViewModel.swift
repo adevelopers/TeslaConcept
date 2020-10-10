@@ -21,7 +21,9 @@ class LoginViewModel {
     
     let login: BehaviorRelay<String?> = .init(value: nil)
     let password: BehaviorRelay<String?> = .init(value: nil)
+    
     let loginError: BehaviorRelay<String?> = .init(value: nil)
+    let signInEnabled: BehaviorRelay<Bool> = .init(value: false)
     
     let didTapSignIn: PublishRelay<Void> = .init()
     let didTapRegistration: PublishRelay<Void> = .init()
@@ -35,8 +37,16 @@ class LoginViewModel {
     
     private func setupSubscriptions() {
         
+        let loginAndPasswordShared = Observable.combineLatest(login.compactMap({ $0 }),
+                                                              password.compactMap({ $0 }))
+            .share()
+        
+        loginAndPasswordShared
+            .map({ $0.0.count >= 3 && $0.1.count >= 5}).bind(to: signInEnabled)
+            .disposed(by: disposeBag)
+        
         didTapSignIn
-            .withLatestFrom(Observable.combineLatest(login.compactMap({ $0 }), password.compactMap({ $0 })))
+            .withLatestFrom(loginAndPasswordShared)
             .subscribe(onNext: fieldsValidation)
             .disposed(by: disposeBag)
         

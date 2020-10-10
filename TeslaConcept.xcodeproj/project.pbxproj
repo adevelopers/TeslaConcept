@@ -219,8 +219,8 @@
 		FA623878252899C400CCBF8C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				FA62387925289A1300CCBF8C /* LoginViewController.swift */,
 				FA62387D25289A4900CCBF8C /* LoginCoordinator.swift */,
+				FA62387925289A1300CCBF8C /* LoginViewController.swift */,
 				FA62388025289A6100CCBF8C /* LoginViewModel.swift */,
 			);
 			path = Login;
