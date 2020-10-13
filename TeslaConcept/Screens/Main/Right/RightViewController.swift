@@ -11,9 +11,12 @@ import VanillaConstraints
 import GoogleMaps
 import CoreLocation
 import Combine
+import RxSwift
 
 
 final class RightViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
     
     private(set) var viewModel: MapViewModel
     
@@ -49,7 +52,9 @@ final class RightViewController: UIViewController {
         UILabel()
     }()
     
-    private var locationManager: CLLocationManager?
+    private lazy var locationManager: LocationManager = {
+        return LocationManager.shared
+    }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -72,7 +77,6 @@ final class RightViewController: UIViewController {
         label.text = "View"
         setupUI()
         configureMapStyle()
-        setupLocationManager()
         setupSubscriptions()
     }
     
@@ -89,7 +93,6 @@ final class RightViewController: UIViewController {
         mapView.settings.compassButton = true
         mapView.setMinZoom(1, maxZoom: 50)
         mapView.camera = camera
-        mapView.delegate = self
         
         musicTracksButton
             .add(to: view)
@@ -120,6 +123,12 @@ final class RightViewController: UIViewController {
             .sink(receiveValue: handleTrack)
             .store(in: &cancellables)
         
+     
+        LocationManager.shared
+            .location
+            .subscribe(onNext: handleLocation)
+            .disposed(by: disposeBag)
+        
     }
     
     @objc
@@ -128,13 +137,31 @@ final class RightViewController: UIViewController {
     }
     
     private func handleTrack(_ dto: TrackDTO) {
-        locationManager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         route?.map = nil
         route = dto.polyline
         route?.map = mapView
         addMarker(position: dto.lastCoordinate)
         if let routePath = dto.polyline.path {
             mapView.animate(with: GMSCameraUpdate.fit(GMSCoordinateBounds(path: routePath)))
+        }
+    }
+    
+    private func handleLocation(_ location: CLLocation?) {
+        if let location = location {
+            switch store.state.value {
+            case .tracking:
+                viewModel.speed.send(location.speed)
+                viewModel.trackCoordinates.send(location.coordinate)
+                routePath?.add(location.coordinate)
+                // Обновляем путь у линии маршрута путём повторного присвоения
+                route?.path = routePath
+            case .cuttentLocation:
+                addMarker(position: location.coordinate)
+            default:
+                ()
+            }
+            mapView.animate(toLocation: location.coordinate)
         }
     }
     
@@ -151,28 +178,16 @@ final class RightViewController: UIViewController {
         marker.map = mapView
     }
     
-    // MARK: Location
-    private func setupLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.allowsBackgroundLocationUpdates = true
-        locationManager?.pausesLocationUpdatesAutomatically = false
-        locationManager?.delegate = self
-    }
-    
     private func didTapOnCurrentLocation() {
-        print("current location")
-        locationManager?.requestLocation()
+        locationManager.requestLocation()
     }
     
     private func didTapOnTrackLocation() {
-        print("startUpdatingLocation")
-        locationManager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
     }
     
     private func didTapOnStartTrack() {
-        print("Начать трек")
-        locationManager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         mapStartNewTrack()
         viewModel.startTrack()
     }
@@ -187,41 +202,6 @@ final class RightViewController: UIViewController {
     }
     
     private func didTapOnStopTrack() {
-        locationManager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
 }
-
-extension RightViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("📍 ", coordinate)
-    }
-    
-}
-
-extension RightViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if let location = locations.first {
-            switch store.state.value {
-            case .tracking:
-                viewModel.speed.send(location.speed)
-                viewModel.trackCoordinates.send(location.coordinate)
-                routePath?.add(location.coordinate)
-                // Обновляем путь у линии маршрута путём повторного присвоения
-                route?.path = routePath
-            case .cuttentLocation:
-                addMarker(position: location.coordinate)
-            default:
-                ()
-            }
-            print("\(store.state.value)\nposition: ", location.coordinate)
-
-            mapView.animate(toLocation: location.coordinate)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error.localizedDescription)
-    }
-}
-

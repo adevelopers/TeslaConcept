@@ -7,11 +7,15 @@
 //
 
 import UIKit
-import Combine
+import RxSwift
+import RxCocoa
+
 import VanillaConstraints
 
 
 final class LoginViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -50,13 +54,13 @@ final class LoginViewController: UIViewController {
         return label
     }()
     
-    private lazy var loginButton: PrimaryButton = {
+    private lazy var signInButton: PrimaryButton = {
         let button = PrimaryButton()
         button.layer.cornerRadius = 15
         button.backgroundColor = .backgroundPanel
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        button.setTitleColor(.darkGray, for: .disabled)
         return button
     }()
     
@@ -65,13 +69,11 @@ final class LoginViewController: UIViewController {
         button.layer.cornerRadius = 15
         button.backgroundColor = .backgroundPanel
         button.setTitle("Зарегистрироваться", for: .normal)
-        button.setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .normal)
-        button.addTarget(self, action: #selector(didTap), for: .touchUpInside)
+        button.setTitleColor(UIColor.white, for: .normal)
         return button
     }()
     
     private var viewModel: LoginViewModel
-    private var cancellables: [AnyCancellable] = []
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscapeRight
@@ -100,7 +102,6 @@ final class LoginViewController: UIViewController {
         
         setupUI()
         setupSubscriptions()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,7 +143,7 @@ final class LoginViewController: UIViewController {
             .centerX(to: \.centerXAnchor)
             .width(300)
         
-        loginButton
+        signInButton
             .add(to: view)
             .top(to: \.bottomAnchor, of: errorLabel, constant: 16)
             .centerX(to: \.centerXAnchor)
@@ -151,64 +152,30 @@ final class LoginViewController: UIViewController {
         
         registraionButton
             .add(to: view)
-            .top(to: \.bottomAnchor, of: loginButton, constant: 48)
+            .top(to: \.bottomAnchor, of: signInButton, constant: 48)
             .centerX(to: \.centerXAnchor)
             .width(300)
             .height(48)
         
-        passwordField
-            .addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        passwordField
-            .addTarget(self, action: #selector(beginEditing), for: .editingDidBegin)
-        
-        loginField
-            .addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        loginField
-            .addTarget(self, action: #selector(beginEditing), for: .editingDidBegin)
     }
     
     
     private func setupSubscriptions() {
-        viewModel.loginError
-            .assign(to: \.text, on: errorLabel)
-            .store(in: &cancellables)
-    }
-    
-    @objc
-    private func beginEditing(_ field: UITextField) {
-        viewModel.loginError.send(nil)
-    }
-    
-    @objc
-    private func editingChanged(_ field: UITextField) {
-        switch field {
-        case loginField:
-            viewModel.login.send(field.text)
-        case passwordField:
-            viewModel.password.send(field.text)
-        default:
-            ()
-        }
         
-    }
-    
-    @objc private func editingLoginChanged(_ field: UITextField) {
-        viewModel.password.send(field.text)
-    }
-    
-    @objc
-    private func didTap(_ button: UIButton) {
-        
-        switch button {
-        case loginButton:
-            viewModel.login.send(loginField.text?.lowercased())
-            viewModel.password.send(passwordField.text)
-            viewModel.didTapSignIn.send()
-        case registraionButton:
-            viewModel.didTapRegistration.send()
-        default:
-            ()
-        }
+        disposeBag.insert([
+            loginField.rx.text
+                .bind(to: viewModel.login),
+            passwordField.rx.text
+                .bind(to: viewModel.password),
+            viewModel.loginError
+                .bind(to: errorLabel.rx.text),
+            viewModel.signInEnabled
+                .bind(to: signInButton.rx.isEnabled),
+            signInButton.rx.tap
+                .bind(to: viewModel.didTapSignIn),
+            registraionButton.rx.tap
+                .bind(to: viewModel.didTapRegistration)
+        ])
     }
     
 }
